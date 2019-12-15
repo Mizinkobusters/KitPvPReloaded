@@ -107,77 +107,77 @@ public class KitPvP extends JavaPlugin implements Listener {
 
 		//チーム生成
 		black = sb.getTeam("black");
-		if(black == null) {
+		if (black == null) {
 			black = createKitPvPTeam("black");
 		}
 
 		dark_blue = sb.getTeam("dark_blue");
-		if(dark_blue == null) {
+		if (dark_blue == null) {
 			dark_blue = createKitPvPTeam("dark_blue");
 		}
 
 		dark_green = sb.getTeam("dark_green");
-		if(dark_green == null) {
+		if (dark_green == null) {
 			dark_green = createKitPvPTeam("dark_green");
 		}
 
 		dark_aqua = sb.getTeam("dark_aqua");
-		if(dark_aqua == null) {
+		if (dark_aqua == null) {
 			dark_aqua = createKitPvPTeam("dark_aqua");
 		}
 
 		dark_red = sb.getTeam("dark_red");
-		if(dark_red == null) {
+		if (dark_red == null) {
 			dark_red = createKitPvPTeam("dark_red");
 		}
 
 		dark_purple = sb.getTeam("dark_purple");
-		if(dark_purple == null) {
+		if (dark_purple == null) {
 			dark_purple = createKitPvPTeam("dark_purple");
 		}
 
 		gold = sb.getTeam("gold");
-		if(gold == null) {
+		if (gold == null) {
 			gold = createKitPvPTeam("gold");
 		}
 
 		gray = sb.getTeam("gray");
-		if(gray == null) {
+		if (gray == null) {
 			gray = createKitPvPTeam("gray");
 		}
 
 		dark_gray = sb.getTeam("dark_gray");
-		if(dark_gray == null) {
+		if (dark_gray == null) {
 			dark_gray = createKitPvPTeam("dark_gray");
 		}
 
 		blue = sb.getTeam("blue");
-		if(blue == null) {
+		if (blue == null) {
 			blue = createKitPvPTeam("blue");
 		}
 
 		green = sb.getTeam("green");
-		if(green == null) {
+		if (green == null) {
 			green = createKitPvPTeam("green");
 		}
 
 		aqua = sb.getTeam("aqua");
-		if(aqua == null) {
+		if (aqua == null) {
 			aqua = createKitPvPTeam("aqua");
 		}
 
 		red = sb.getTeam("red");
-		if(red == null) {
+		if (red == null) {
 			red = createKitPvPTeam("red");
 		}
 
 		light_purple = sb.getTeam("light_purple");
-		if(light_purple == null) {
+		if (light_purple == null) {
 			light_purple = createKitPvPTeam("light_purple");
 		}
 
 		yellow = sb.getTeam("yellow");
-		if(yellow == null) {
+		if (yellow == null) {
 			yellow = createKitPvPTeam("yellow");
 		}
 
