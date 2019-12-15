@@ -106,7 +106,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 		Bukkit.getPluginCommand("Request").setExecutor(new Request(this));
 
 		//チーム生成
-		sb.getTeam("black");
+		black = sb.getTeam("black");
 		if(black == null) {
 			black = sb.registerNewTeam("black");
 			black.setAllowFriendlyFire(false);
@@ -114,7 +114,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			black.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("dark_blue");
+		dark_blue = sb.getTeam("dark_blue");
 		if(dark_blue == null) {
 			dark_blue = sb.registerNewTeam("dark_blue");
 			dark_blue.setAllowFriendlyFire(false);
@@ -122,7 +122,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			dark_blue.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("dark_green");
+		dark_green = sb.getTeam("dark_green");
 		if(dark_green == null) {
 			dark_green = sb.registerNewTeam("dark_green");
 			dark_green.setAllowFriendlyFire(false);
@@ -130,7 +130,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			dark_green.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("dark_aqua");
+		dark_aqua = sb.getTeam("dark_aqua");
 		if(dark_aqua == null) {
 			dark_aqua = sb.registerNewTeam("dark_aqua");
 			dark_aqua.setAllowFriendlyFire(false);
@@ -138,7 +138,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			dark_aqua.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("dark_red");
+		dark_red = sb.getTeam("dark_red");
 		if(dark_red == null) {
 			dark_red = sb.registerNewTeam("dark_red");
 			dark_red.setAllowFriendlyFire(false);
@@ -146,7 +146,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			dark_red.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("dark_purple");
+		dark_purple = sb.getTeam("dark_purple");
 		if(dark_purple == null) {
 			dark_purple = sb.registerNewTeam("dark_purple");
 			dark_purple.setAllowFriendlyFire(false);
@@ -154,7 +154,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			dark_purple.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("gold");
+		gold = sb.getTeam("gold");
 		if(gold == null) {
 			gold = sb.registerNewTeam("gold");
 			gold.setAllowFriendlyFire(false);
@@ -162,7 +162,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			gold.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("gray");
+		gray = sb.getTeam("gray");
 		if(gray == null) {
 			gray = sb.registerNewTeam("gray");
 			gray.setAllowFriendlyFire(false);
@@ -170,7 +170,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			gray.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("dark_gray");
+		dark_gray = sb.getTeam("dark_gray");
 		if(dark_gray == null) {
 			dark_gray = sb.registerNewTeam("dark_gray");
 			dark_gray.setAllowFriendlyFire(false);
@@ -178,7 +178,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			dark_gray.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("blue");
+		blue = sb.getTeam("blue");
 		if(blue == null) {
 			blue = sb.registerNewTeam("blue");
 			blue.setAllowFriendlyFire(false);
@@ -186,7 +186,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			blue.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("green");
+		green = sb.getTeam("green");
 		if(green == null) {
 			green = sb.registerNewTeam("green");
 			green.setAllowFriendlyFire(false);
@@ -194,7 +194,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			green.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("aqua");
+		aqua = sb.getTeam("aqua");
 		if(aqua == null) {
 			aqua = sb.registerNewTeam("aqua");
 			aqua.setAllowFriendlyFire(false);
@@ -202,7 +202,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			aqua.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("red");
+		red = sb.getTeam("red");
 		if(red == null) {
 			red = sb.registerNewTeam("red");
 			red.setAllowFriendlyFire(false);
@@ -210,7 +210,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			red.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("light_purple");
+		light_purple = sb.getTeam("light_purple");
 		if(light_purple == null) {
 			light_purple = sb.registerNewTeam("light_purple");
 			light_purple.setAllowFriendlyFire(false);
@@ -218,7 +218,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 			light_purple.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 		}
 
-		sb.getTeam("yellow");
+		yellow = sb.getTeam("yellow");
 		if(yellow == null) {
 			yellow = sb.registerNewTeam("yellow");
 			yellow.setAllowFriendlyFire(false);
