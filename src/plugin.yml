@@ -1,0 +1,8 @@
+main: mb.mizinkobusters.kitpvp.KitPvP
+name: KitPvP
+version: 0.0.1-alpha
+
+commands:
+  accept:
+  disband:
+  request:
