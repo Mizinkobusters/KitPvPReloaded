@@ -132,137 +132,77 @@ public class KitPvP extends JavaPlugin implements Listener {
 
 		//チーム生成
 		black = sb.getTeam("black");
-<<<<<<< HEAD
 		if(black == null) {
-=======
-		if (black == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			black = createKitPvPTeam("black");
 		}
 
 		dark_blue = sb.getTeam("dark_blue");
-<<<<<<< HEAD
 		if(dark_blue == null) {
-=======
-		if (dark_blue == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			dark_blue = createKitPvPTeam("dark_blue");
 		}
 
 		dark_green = sb.getTeam("dark_green");
-<<<<<<< HEAD
 		if(dark_green == null) {
-=======
-		if (dark_green == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			dark_green = createKitPvPTeam("dark_green");
 		}
 
 		dark_aqua = sb.getTeam("dark_aqua");
-<<<<<<< HEAD
 		if(dark_aqua == null) {
-=======
-		if (dark_aqua == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			dark_aqua = createKitPvPTeam("dark_aqua");
 		}
 
 		dark_red = sb.getTeam("dark_red");
-<<<<<<< HEAD
 		if(dark_red == null) {
-=======
-		if (dark_red == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			dark_red = createKitPvPTeam("dark_red");
 		}
 
 		dark_purple = sb.getTeam("dark_purple");
-<<<<<<< HEAD
 		if(dark_purple == null) {
-=======
-		if (dark_purple == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			dark_purple = createKitPvPTeam("dark_purple");
 		}
 
 		gold = sb.getTeam("gold");
-<<<<<<< HEAD
 		if(gold == null) {
-=======
-		if (gold == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			gold = createKitPvPTeam("gold");
 		}
 
 		gray = sb.getTeam("gray");
-<<<<<<< HEAD
 		if(gray == null) {
-=======
-		if (gray == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			gray = createKitPvPTeam("gray");
 		}
 
 		dark_gray = sb.getTeam("dark_gray");
-<<<<<<< HEAD
 		if(dark_gray == null) {
-=======
-		if (dark_gray == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			dark_gray = createKitPvPTeam("dark_gray");
 		}
 
 		blue = sb.getTeam("blue");
-<<<<<<< HEAD
 		if(blue == null) {
-=======
-		if (blue == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			blue = createKitPvPTeam("blue");
 		}
 
 		green = sb.getTeam("green");
-<<<<<<< HEAD
 		if(green == null) {
-=======
-		if (green == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			green = createKitPvPTeam("green");
 		}
 
 		aqua = sb.getTeam("aqua");
-<<<<<<< HEAD
 		if(aqua == null) {
-=======
-		if (aqua == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			aqua = createKitPvPTeam("aqua");
 		}
 
 		red = sb.getTeam("red");
-<<<<<<< HEAD
 		if(red == null) {
-=======
-		if (red == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			red = createKitPvPTeam("red");
 		}
 
 		light_purple = sb.getTeam("light_purple");
-<<<<<<< HEAD
 		if(light_purple == null) {
-=======
-		if (light_purple == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			light_purple = createKitPvPTeam("light_purple");
 		}
 
 		yellow = sb.getTeam("yellow");
-<<<<<<< HEAD
 		if(yellow == null) {
-=======
-		if (yellow == null) {
->>>>>>> cd88f96271b12951f6b636d8e7f1e48d84f5340c
 			yellow = createKitPvPTeam("yellow");
 		}
 
