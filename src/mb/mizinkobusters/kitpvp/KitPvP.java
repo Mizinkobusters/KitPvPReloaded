@@ -106,124 +106,79 @@ public class KitPvP extends JavaPlugin implements Listener {
 		Bukkit.getPluginCommand("Request").setExecutor(new Request(this));
 
 		//チーム生成
-		sb.getTeam("black");
-		if(black == null) {
-			black = sb.registerNewTeam("black");
-			black.setAllowFriendlyFire(false);
-			black.setCanSeeFriendlyInvisibles(true);
-			black.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		black = sb.getTeam("black");
+		if (black == null) {
+			black = createKitPvPTeam("black");
 		}
 
-		sb.getTeam("dark_blue");
-		if(dark_blue == null) {
-			dark_blue = sb.registerNewTeam("dark_blue");
-			dark_blue.setAllowFriendlyFire(false);
-			dark_blue.setCanSeeFriendlyInvisibles(true);
-			dark_blue.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		dark_blue = sb.getTeam("dark_blue");
+		if (dark_blue == null) {
+			dark_blue = createKitPvPTeam("dark_blue");
 		}
 
-		sb.getTeam("dark_green");
-		if(dark_green == null) {
-			dark_green = sb.registerNewTeam("dark_green");
-			dark_green.setAllowFriendlyFire(false);
-			dark_green.setCanSeeFriendlyInvisibles(true);
-			dark_green.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		dark_green = sb.getTeam("dark_green");
+		if (dark_green == null) {
+			dark_green = createKitPvPTeam("dark_green");
 		}
 
-		sb.getTeam("dark_aqua");
-		if(dark_aqua == null) {
-			dark_aqua = sb.registerNewTeam("dark_aqua");
-			dark_aqua.setAllowFriendlyFire(false);
-			dark_aqua.setCanSeeFriendlyInvisibles(true);
-			dark_aqua.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		dark_aqua = sb.getTeam("dark_aqua");
+		if (dark_aqua == null) {
+			dark_aqua = createKitPvPTeam("dark_aqua");
 		}
 
-		sb.getTeam("dark_red");
-		if(dark_red == null) {
-			dark_red = sb.registerNewTeam("dark_red");
-			dark_red.setAllowFriendlyFire(false);
-			dark_red.setCanSeeFriendlyInvisibles(true);
-			dark_red.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		dark_red = sb.getTeam("dark_red");
+		if (dark_red == null) {
+			dark_red = createKitPvPTeam("dark_red");
 		}
 
-		sb.getTeam("dark_purple");
-		if(dark_purple == null) {
-			dark_purple = sb.registerNewTeam("dark_purple");
-			dark_purple.setAllowFriendlyFire(false);
-			dark_purple.setCanSeeFriendlyInvisibles(true);
-			dark_purple.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		dark_purple = sb.getTeam("dark_purple");
+		if (dark_purple == null) {
+			dark_purple = createKitPvPTeam("dark_purple");
 		}
 
-		sb.getTeam("gold");
-		if(gold == null) {
-			gold = sb.registerNewTeam("gold");
-			gold.setAllowFriendlyFire(false);
-			gold.setCanSeeFriendlyInvisibles(true);
-			gold.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		gold = sb.getTeam("gold");
+		if (gold == null) {
+			gold = createKitPvPTeam("gold");
 		}
 
-		sb.getTeam("gray");
-		if(gray == null) {
-			gray = sb.registerNewTeam("gray");
-			gray.setAllowFriendlyFire(false);
-			gray.setCanSeeFriendlyInvisibles(true);
-			gray.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		gray = sb.getTeam("gray");
+		if (gray == null) {
+			gray = createKitPvPTeam("gray");
 		}
 
-		sb.getTeam("dark_gray");
-		if(dark_gray == null) {
-			dark_gray = sb.registerNewTeam("dark_gray");
-			dark_gray.setAllowFriendlyFire(false);
-			dark_gray.setCanSeeFriendlyInvisibles(true);
-			dark_gray.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		dark_gray = sb.getTeam("dark_gray");
+		if (dark_gray == null) {
+			dark_gray = createKitPvPTeam("dark_gray");
 		}
 
-		sb.getTeam("blue");
-		if(blue == null) {
-			blue = sb.registerNewTeam("blue");
-			blue.setAllowFriendlyFire(false);
-			blue.setCanSeeFriendlyInvisibles(true);
-			blue.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		blue = sb.getTeam("blue");
+		if (blue == null) {
+			blue = createKitPvPTeam("blue");
 		}
 
-		sb.getTeam("green");
-		if(green == null) {
-			green = sb.registerNewTeam("green");
-			green.setAllowFriendlyFire(false);
-			green.setCanSeeFriendlyInvisibles(true);
-			green.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		green = sb.getTeam("green");
+		if (green == null) {
+			green = createKitPvPTeam("green");
 		}
 
-		sb.getTeam("aqua");
-		if(aqua == null) {
-			aqua = sb.registerNewTeam("aqua");
-			aqua.setAllowFriendlyFire(false);
-			aqua.setCanSeeFriendlyInvisibles(true);
-			aqua.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		aqua = sb.getTeam("aqua");
+		if (aqua == null) {
+			aqua = createKitPvPTeam("aqua");
 		}
 
-		sb.getTeam("red");
-		if(red == null) {
-			red = sb.registerNewTeam("red");
-			red.setAllowFriendlyFire(false);
-			red.setCanSeeFriendlyInvisibles(true);
-			red.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		red = sb.getTeam("red");
+		if (red == null) {
+			red = createKitPvPTeam("red");
 		}
 
-		sb.getTeam("light_purple");
-		if(light_purple == null) {
-			light_purple = sb.registerNewTeam("light_purple");
-			light_purple.setAllowFriendlyFire(false);
-			light_purple.setCanSeeFriendlyInvisibles(true);
-			light_purple.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		light_purple = sb.getTeam("light_purple");
+		if (light_purple == null) {
+			light_purple = createKitPvPTeam("light_purple");
 		}
 
-		sb.getTeam("yellow");
-		if(yellow == null) {
-			yellow = sb.registerNewTeam("yellow");
-			yellow.setAllowFriendlyFire(false);
-			yellow.setCanSeeFriendlyInvisibles(true);
-			yellow.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+		yellow = sb.getTeam("yellow");
+		if (yellow == null) {
+			yellow = createKitPvPTeam("yellow");
 		}
 
 	}
@@ -244,5 +199,12 @@ public class KitPvP extends JavaPlugin implements Listener {
 		System.out.println("");
 	}
 
+	public Team createKitPvPTeam(String teamName) {
+		Team team = sb.registerNewTeam(teamName);
+		team.setAllowFriendlyFire(false);
+		team.setCanSeeFriendlyInvisibles(true);
+		team.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
 
+		return team;
+	}
 }
