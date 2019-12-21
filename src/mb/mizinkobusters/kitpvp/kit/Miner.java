@@ -48,10 +48,10 @@ public class Miner implements Listener {
 
 			switch (i) {
 				case 0:
-					player.addPotionEffect(
+					killer.addPotionEffect(
 							new PotionEffect(PotionEffectType.REGENERATION, 400, 0, false, false));
-					player.sendMessage("§8Minig Success!");
-					player.playSound(player.getLocation(), Sound.DIG_STONE, 1, 1);
+					killer.sendMessage("§8Minig Success!");
+					killer.playSound(killer.getLocation(), Sound.DIG_STONE, 1, 1);
 					break;
 				case 1:
 					Random r1 = new Random();
@@ -59,30 +59,30 @@ public class Miner implements Listener {
 
 					switch (i1) {
 						case 0:
-							player.addPotionEffect(
+							killer.addPotionEffect(
 									new PotionEffect(PotionEffectType.SPEED, 400, 0, false, false));
-							player.sendMessage("§8Minig Success!");
-							player.playSound(player.getLocation(), Sound.DIG_STONE, 1, 1);
+							killer.sendMessage("§8Minig Success!");
+							killer.playSound(killer.getLocation(), Sound.DIG_STONE, 1, 1);
 							break;
 						case 1:
-							player.addPotionEffect(
+							killer.addPotionEffect(
 									new PotionEffect(PotionEffectType.SPEED, 400, 1, false, false));
-							player.sendMessage("§8Minig Success!");
-							player.playSound(player.getLocation(), Sound.DIG_STONE, 1, 1);
+							killer.sendMessage("§8Minig Success!");
+							killer.playSound(killer.getLocation(), Sound.DIG_STONE, 1, 1);
 							break;
 						case 2:
-							player.removePotionEffect(PotionEffectType.FAST_DIGGING);
-							player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,
+							killer.removePotionEffect(PotionEffectType.FAST_DIGGING);
+							killer.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,
 									400, 0, false, false));
-							player.sendMessage("§8Minig Success!");
-							player.playSound(player.getLocation(), Sound.DIG_STONE, 1, 1);
+							killer.sendMessage("§8Minig Success!");
+							killer.playSound(killer.getLocation(), Sound.DIG_STONE, 1, 1);
 							break;
 						case 3:
-							player.removePotionEffect(PotionEffectType.FAST_DIGGING);
-							player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,
+							killer.removePotionEffect(PotionEffectType.FAST_DIGGING);
+							killer.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING,
 									400, 1, false, false));
-							player.sendMessage("§8Minig Success!");
-							player.playSound(player.getLocation(), Sound.DIG_STONE, 1, 1);
+							killer.sendMessage("§8Minig Success!");
+							killer.playSound(killer.getLocation(), Sound.DIG_STONE, 1, 1);
 							break;
 					}
 					break;
@@ -92,28 +92,28 @@ public class Miner implements Listener {
 
 					switch (i2) {
 						case 0:
-							player.addPotionEffect(new PotionEffect(
+							killer.addPotionEffect(new PotionEffect(
 									PotionEffectType.DAMAGE_RESISTANCE, 400, 0, false, false));
-							player.sendMessage("§8Minig Success!");
-							player.playSound(player.getLocation(), Sound.DIG_STONE, 1, 1);
+							killer.sendMessage("§8Minig Success!");
+							killer.playSound(killer.getLocation(), Sound.DIG_STONE, 1, 1);
 							break;
 						case 1:
-							player.addPotionEffect(new PotionEffect(
+							killer.addPotionEffect(new PotionEffect(
 									PotionEffectType.DAMAGE_RESISTANCE, 400, 1, false, false));
-							player.sendMessage("§8Minig Success!");
-							player.playSound(player.getLocation(), Sound.DIG_STONE, 1, 1);
+							killer.sendMessage("§8Minig Success!");
+							killer.playSound(killer.getLocation(), Sound.DIG_STONE, 1, 1);
 							break;
 						case 2:
-							player.addPotionEffect(
+							killer.addPotionEffect(
 									new PotionEffect(PotionEffectType.JUMP, 400, 0, false, false));
-							player.sendMessage("§8Minig Success!");
-							player.playSound(player.getLocation(), Sound.DIG_STONE, 1, 1);
+							killer.sendMessage("§8Minig Success!");
+							killer.playSound(killer.getLocation(), Sound.DIG_STONE, 1, 1);
 							break;
 						case 3:
-							player.addPotionEffect(
+							killer.addPotionEffect(
 									new PotionEffect(PotionEffectType.JUMP, 400, 1, false, false));
-							player.sendMessage("§8Minig Success!");
-							player.playSound(player.getLocation(), Sound.DIG_STONE, 1, 1);
+							killer.sendMessage("§8Minig Success!");
+							killer.playSound(killer.getLocation(), Sound.DIG_STONE, 1, 1);
 							break;
 					}
 					break;
@@ -123,22 +123,22 @@ public class Miner implements Listener {
 
 					switch (i3) {
 						case 0:
-							player.addPotionEffect(new PotionEffect(
+							killer.addPotionEffect(new PotionEffect(
 									PotionEffectType.INCREASE_DAMAGE, 400, 0, false, false));
-							player.sendMessage("§8Minig Success!");
-							player.playSound(player.getLocation(), Sound.DIG_STONE, 1, 1);
+							killer.sendMessage("§8Minig Success!");
+							killer.playSound(killer.getLocation(), Sound.DIG_STONE, 1, 1);
 							break;
 						case 1:
-							player.addPotionEffect(new PotionEffect(
+							killer.addPotionEffect(new PotionEffect(
 									PotionEffectType.INCREASE_DAMAGE, 400, 1, false, false));
-							player.sendMessage("§8Minig Success!");
-							player.playSound(player.getLocation(), Sound.DIG_STONE, 1, 1);
+							killer.sendMessage("§8Minig Success!");
+							killer.playSound(killer.getLocation(), Sound.DIG_STONE, 1, 1);
 							break;
 					}
 					break;
 				case 4:
-					player.sendMessage("§8Minig Failed...");
-					player.playSound(player.getLocation(), Sound.ITEM_BREAK, 1, 1);
+					killer.sendMessage("§8Minig Failed...");
+					killer.playSound(killer.getLocation(), Sound.ITEM_BREAK, 1, 1);
 					break;
 				default:
 					break;
