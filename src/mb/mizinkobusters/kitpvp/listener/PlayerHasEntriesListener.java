@@ -7,7 +7,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
-
 import mb.mizinkobusters.kitpvp.KitPvP;
 
 public class PlayerHasEntriesListener extends BukkitRunnable implements Listener {
@@ -25,8 +24,8 @@ public class PlayerHasEntriesListener extends BukkitRunnable implements Listener
 
 	@Override
 	public void run() {
-		for(Team teams : sb.getTeams()) {
-			if(!teams.hasEntry(player.getName())) {
+		for (Team teams : sb.getTeams()) {
+			if (!teams.hasEntry(player.getName())) {
 				player.sendMessage(prefix + "§eチーム申請は破棄されました");
 			}
 		}

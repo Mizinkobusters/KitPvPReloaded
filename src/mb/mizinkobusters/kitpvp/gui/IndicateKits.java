@@ -2,7 +2,6 @@ package mb.mizinkobusters.kitpvp.gui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -14,7 +13,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import mb.mizinkobusters.kitpvp.KitPvP;
 
 public class IndicateKits implements Listener {
@@ -32,8 +30,7 @@ public class IndicateKits implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		Inventory inv = event.getInventory();
 
-		if(player.getWorld().getName().equals("kitpvp")
-				&& inv.getName().contains("Kit")
+		if (player.getWorld().getName().equals("kitpvp") && inv.getName().contains("Kit")
 				&& inv.getSize() == 3) {
 			event.setCancelled(true);
 		}
@@ -262,7 +259,7 @@ public class IndicateKits implements Listener {
 		ItemStack gapple = new ItemStack(Material.IRON_FENCE);
 
 		ItemStack ability1 = new ItemStack(Material.WOOD_SWORD);
-		ItemStack ability2 = new ItemStack(Material.POTION, 1, (short)8201);
+		ItemStack ability2 = new ItemStack(Material.POTION, 1, (short) 8201);
 
 		ItemStack helmet = new ItemStack(Material.IRON_HELMET);
 		ItemStack chestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
@@ -286,8 +283,8 @@ public class IndicateKits implements Listener {
 
 		meta = ability2.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7プレイヤーを倒すと弱体化がかき消され",
-															"§77秒間攻撃力上昇Iが付与される")));
+		meta.setLore(
+				new ArrayList<String>(Arrays.asList("§7プレイヤーを倒すと弱体化がかき消され", "§77秒間攻撃力上昇Iが付与される")));
 		ability2.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
@@ -449,7 +446,7 @@ public class IndicateKits implements Listener {
 		return gui;
 	}
 
-	//TODO 防具に色つける
+	// TODO 防具に色つける
 	public Inventory cometGUI() {
 		Inventory gui = Bukkit.createInventory(null, 3, "§c§lComet Kit§7(一般Kit)");
 
@@ -538,8 +535,8 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§71/5の確率で受けるダメージを半分にし",
-															"受けたダメージを相手にも与える")));
+		meta.setLore(
+				new ArrayList<String>(Arrays.asList("§71/5の確率で受けるダメージを半分にし", "受けたダメージを相手にも与える")));
 		ability1.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
@@ -957,8 +954,7 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§71/6の確率でダメージを与えたプレイヤーの真上に",
-															"雷を落とす")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§71/6の確率でダメージを与えたプレイヤーの真上に", "雷を落とす")));
 		ability1.setItemMeta(meta);
 
 		meta = ability2.getItemMeta();
@@ -1027,9 +1023,7 @@ public class IndicateKits implements Listener {
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
 		meta.setLore(new ArrayList<String>(Arrays.asList("§7金のリンゴを食べると移動速度上昇IIが付与されるが",
-															"§7金のリンゴを食べた際の効果は無効化され",
-															"§7体力が減少する",
-															"§7また移動速度が上昇している間は体力が自然回復しない")));
+				"§7金のリンゴを食べた際の効果は無効化され", "§7体力が減少する", "§7また移動速度が上昇している間は体力が自然回復しない")));
 		ability1.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
@@ -1091,15 +1085,9 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7プレイヤーを倒すと以下のうちいずれかの効果が",
-															"§730秒間付与される",
-															"§7・自然回復I",
-															"§7・移動速度上昇I/II",
-															"§7・採掘速度上昇I/II",
-															"§7・耐性I/II",
-															"§7・跳躍力上昇I/II",
-															"§7・攻撃力上昇I/II",
-															"§7・なし")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7プレイヤーを倒すと以下のうちいずれかの効果が", "§730秒間付与される",
+				"§7・自然回復I", "§7・移動速度上昇I/II", "§7・採掘速度上昇I/II", "§7・耐性I/II", "§7・跳躍力上昇I/II",
+				"§7・攻撃力上昇I/II", "§7・なし")));
 		ability1.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
@@ -1140,9 +1128,9 @@ public class IndicateKits implements Listener {
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
-		ItemStack potion1 = new ItemStack(Material.POTION, 2, (short)16396);
-		ItemStack potion2 = new ItemStack(Material.POTION, 2, (short)16388);
-		ItemStack potion3 = new ItemStack(Material.POTION, 2, (short)16399);
+		ItemStack potion1 = new ItemStack(Material.POTION, 2, (short) 16396);
+		ItemStack potion2 = new ItemStack(Material.POTION, 2, (short) 16388);
+		ItemStack potion3 = new ItemStack(Material.POTION, 2, (short) 16399);
 
 		ItemStack ability1 = new ItemStack(Material.BREWING_STAND);
 
@@ -1173,8 +1161,7 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7プレイヤーを倒すと",
-															"§7毒のスプラッシュポーションを獲得できる")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7プレイヤーを倒すと", "§7毒のスプラッシュポーションを獲得できる")));
 		ability1.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
@@ -1289,7 +1276,7 @@ public class IndicateKits implements Listener {
 
 		ItemStack gapple = new ItemStack(Material.IRON_FENCE);
 
-		ItemStack ability1 = new ItemStack(Material.POTION, 1, (short)8193);
+		ItemStack ability1 = new ItemStack(Material.POTION, 1, (short) 8193);
 		ItemStack ability2 = new ItemStack(Material.REDSTONE);
 		ItemStack ability3 = new ItemStack(Material.GOLDEN_APPLE);
 
@@ -1384,8 +1371,8 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7HPが7以下のとき+1",
-															"§7HPが3以下のとき+2与えるダメージが増える")));
+		meta.setLore(
+				new ArrayList<String>(Arrays.asList("§7HPが7以下のとき+1", "§7HPが3以下のとき+2与えるダメージが増える")));
 		ability1.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
@@ -1527,12 +1514,8 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7相手との距離で与えるダメージ量が変化する",
-															"§75m以内: -4ダメージ",
-															"§710m以内: -2ダメージ",
-															"§715m以内: +0ダメージ",
-															"§720m以内: +1ダメージ",
-															"§720mより遠いと +2ダメージ")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7相手との距離で与えるダメージ量が変化する", "§75m以内: -4ダメージ",
+				"§710m以内: -2ダメージ", "§715m以内: +0ダメージ", "§720m以内: +1ダメージ", "§720mより遠いと +2ダメージ")));
 		ability1.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
@@ -1595,8 +1578,7 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7金のリンゴを食べると",
-															"§730秒間移動速度上昇Iが付与される")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7金のリンゴを食べると", "§730秒間移動速度上昇Iが付与される")));
 		ability1.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
@@ -1727,8 +1709,8 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7牛乳(ﾀﾋﾟｵｶﾐﾙｸﾃｨｰ)を飲むと",
-															"§7毒の効果がかき消される")));
+		meta.setLore(
+				new ArrayList<String>(Arrays.asList("§7牛乳(ﾀﾋﾟｵｶﾐﾙｸﾃｨｰ)を飲むと", "§7毒の効果がかき消される")));
 		ability1.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();

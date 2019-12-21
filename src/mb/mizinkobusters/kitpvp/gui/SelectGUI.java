@@ -2,7 +2,6 @@ package mb.mizinkobusters.kitpvp.gui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,7 +14,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import mb.mizinkobusters.kitpvp.KitPvP;
 
 public class SelectGUI implements Listener {
@@ -28,8 +26,8 @@ public class SelectGUI implements Listener {
 		this.plugin = plugin;
 	}
 
-	DistributeKits distribute = new DistributeKits((KitPvP)plugin);
-	IndicateKits indicate = new IndicateKits((KitPvP)plugin);
+	DistributeKits distribute = new DistributeKits((KitPvP) plugin);
+	IndicateKits indicate = new IndicateKits((KitPvP) plugin);
 
 	public Inventory kitgui() {
 		Inventory gui = Bukkit.createInventory(null, 6, "§d§lKit選択メニュー");
@@ -37,7 +35,7 @@ public class SelectGUI implements Listener {
 		ItemStack archer = new ItemStack(Material.BOW);
 		ItemStack astronaut = new ItemStack(Material.GLASS);
 		ItemStack attacker = new ItemStack(Material.FISHING_ROD);
-		ItemStack berserker = new ItemStack(Material.POTION, 1, (short)8201);
+		ItemStack berserker = new ItemStack(Material.POTION, 1, (short) 8201);
 		ItemStack blizzard = new ItemStack(Material.ICE);
 		ItemStack boxer = new ItemStack(Material.LEATHER_LEGGINGS);
 		ItemStack comet = new ItemStack(Material.FEATHER);
@@ -48,20 +46,20 @@ public class SelectGUI implements Listener {
 		ItemStack healthboost = new ItemStack(Material.GOLDEN_APPLE);
 		ItemStack iron = new ItemStack(Material.IRON_INGOT);
 		ItemStack lightning = new ItemStack(Material.DOUBLE_PLANT);
-		ItemStack madness = new ItemStack(Material.POTION, 1, (short)8204);
+		ItemStack madness = new ItemStack(Material.POTION, 1, (short) 8204);
 		ItemStack miner = new ItemStack(Material.DIAMOND_PICKAXE);
-		ItemStack potionhandler = new ItemStack(Material.POTION, 1, (short)16396);
+		ItemStack potionhandler = new ItemStack(Material.POTION, 1, (short) 16396);
 		ItemStack rabbit = new ItemStack(Material.RABBIT_FOOT);
 		ItemStack recover = new ItemStack(Material.GHAST_TEAR);
-		ItemStack revival = new ItemStack(Material.POTION, 1, (short)8193);
+		ItemStack revival = new ItemStack(Material.POTION, 1, (short) 8193);
 		ItemStack slasher = new ItemStack(Material.DIAMOND_SWORD);
 		ItemStack sniper = new ItemStack(Material.LONG_GRASS);
 		ItemStack standard = new ItemStack(Material.IRON_SWORD);
 		ItemStack tank = new ItemStack(Material.ANVIL);
 		ItemStack tapiocamilktea = new ItemStack(Material.MILK_BUCKET);
 
-		ItemStack line1 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)7);
-		ItemStack line2 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short)7);
+		ItemStack line1 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 7);
+		ItemStack line2 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 7);
 
 		meta = archer.getItemMeta();
 		meta.setDisplayName("§bArcher Kitを選択する");
@@ -212,9 +210,10 @@ public class SelectGUI implements Listener {
 		Player player = event.getPlayer();
 		ItemStack item = event.getItem();
 
-		if(player.getWorld().getName().equals("kitpvp")
-				&& item.getItemMeta().getDisplayName().equals("§d§lKit選択メニューを開く")
-				&& item.getItemMeta().getDisplayName() != null || item.hasItemMeta()) {
+		if (item.getItemMeta().getDisplayName() == null || !item.hasItemMeta())
+			return;
+		if (player.getWorld().getName().equals("kitpvp")
+				&& item.getItemMeta().getDisplayName().equals("§d§lKit選択メニューを開く")) {
 			player.openInventory(kitgui());
 		}
 	}
@@ -226,107 +225,107 @@ public class SelectGUI implements Listener {
 		ItemStack item = event.getCurrentItem();
 		InventoryAction action = event.getAction();
 
-		if(item.getItemMeta().getDisplayName() != null || item.hasItemMeta()) return;
-		if(player.getWorld().getName().equals("kitpvp")
-				&& inv.getName().equals("§d§lKit選択メニュー")) {
+		if (item.getItemMeta().getDisplayName() == null || !item.hasItemMeta())
+			return;
+		if (player.getWorld().getName().equals("kitpvp") && inv.getName().equals("§d§lKit選択メニュー")) {
 
 			event.setCancelled(true);
 
-			if(item.getItemMeta().getDisplayName().equals("§bArcher Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bArcher Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.archer(player);
 				player.sendMessage(prefix + "§bArcher Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bArcher Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bArcher Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.archerGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bAstronaut Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bAstronaut Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.astronaut(player);
 				player.sendMessage(prefix + "§bAstronaut Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bAstronaut Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bAstronaut Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.astronautGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§cAttacker Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§cAttacker Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
-				if(player.hasPermission("mizinkopvp.kit.purchase.attacker")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.attacker")) {
 					distribute.attacker(player);
 					player.sendMessage(prefix + "§cAttacker Kit を選択しました!");
 				} else {
 					player.closeInventory();
 					player.sendMessage(prefix + "§cKitを購入してください");
 				}
-			} else 	if(item.getItemMeta().getDisplayName().equals("§cAttacker Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§cAttacker Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.attackerGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§cBerserker Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§cBerserker Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
-				if(player.hasPermission("mizinkopvp.kit.purchase.berserker")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.berserker")) {
 					distribute.berserker(player);
 					player.sendMessage(prefix + "§cBerserker Kit を選択しました!");
 				} else {
 					player.closeInventory();
 					player.sendMessage(prefix + "§cKitを購入してください");
 				}
-			} else 	if(item.getItemMeta().getDisplayName().equals("§cBerserker Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§cBerserker Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.berserkerGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§cBlizzard Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§cBlizzard Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
-				if(player.hasPermission("mizinkopvp.kit.purchase.blizzard")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.blizzard")) {
 					distribute.blizzard(player);
 					player.sendMessage(prefix + "§cBlizzard Kit を選択しました!");
 				} else {
 					player.closeInventory();
 					player.sendMessage(prefix + "§cKitを購入してください");
 				}
-			} else 	if(item.getItemMeta().getDisplayName().equals("§cBlizzard Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§cBlizzard Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.blizzardGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bBoxer Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bBoxer Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.boxer(player);
 				player.sendMessage(prefix + "§bBoxer Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bboxer Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bboxer Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.boxerGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bComet Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bComet Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.comet(player);
 				player.sendMessage(prefix + "§bComet Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bComet Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bComet Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.cometGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§cCounter Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§cCounter Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
-				if(player.hasPermission("mizinkopvp.kit.purchase.counter")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.counter")) {
 					distribute.counter(player);
 					player.sendMessage(prefix + "§cCounter Kit を選択しました!");
 				} else {
 					player.closeInventory();
 					player.sendMessage(prefix + "§cKitを購入してください");
 				}
-			} else 	if(item.getItemMeta().getDisplayName().equals("§cCounter Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§cCounter Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.counterGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§cEnderman Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§cEnderman Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
-				if(player.hasPermission("mizinkopvp.kit.purchase.enderman")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.enderman")) {
 					distribute.enderman(player);
 					player.sendMessage(prefix + "§cEnderman Kit を選択しました!");
 					player.sendMessage(prefix + "§dこのKitを使ってガラスの壁に登らないでください");
@@ -334,181 +333,182 @@ public class SelectGUI implements Listener {
 					player.closeInventory();
 					player.sendMessage(prefix + "§cKitを購入してください");
 				}
-			} else 	if(item.getItemMeta().getDisplayName().equals("§cEnderman Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§cEnderman Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.endermanGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bFisherman Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bFisherman Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.fisherman(player);
 				player.sendMessage(prefix + "§bFisherman Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bFisherman Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bFisherman Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.fishermanGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bFlame Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bFlame Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.flame(player);
 				player.sendMessage(prefix + "§bFlame Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bFlame Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bFlame Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.flameGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§cHealthBoost Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§cHealthBoost Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
-				if(player.hasPermission("mizinkopvp.kit.purchase.healthboost")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.healthboost")) {
 					distribute.healthboost(player);
 					player.sendMessage(prefix + "§cHealthBoost Kit を選択しました!");
 				} else {
 					player.closeInventory();
 					player.sendMessage(prefix + "§cKitを購入してください");
 				}
-			} else 	if(item.getItemMeta().getDisplayName().equals("§cHealthBoost Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§cHealthBoost Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.healthboostGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bIron Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bIron Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.iron(player);
 				player.sendMessage(prefix + "§bIron Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bIron Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bIron Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.ironGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bLightning Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bLightning Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.lightning(player);
 				player.sendMessage(prefix + "§bLightning Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bLightning Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bLightning Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.lightningGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§cMadness Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§cMadness Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
-				if(player.hasPermission("mizinkopvp.kit.purchase.madness")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.madness")) {
 					distribute.madness(player);
 					player.sendMessage(prefix + "§cMadness Kit を選択しました!");
 				} else {
 					player.closeInventory();
 					player.sendMessage(prefix + "§cKitを購入してください");
 				}
-			} else 	if(item.getItemMeta().getDisplayName().equals("§cMadness Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§cMadness Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.madnessGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bMiner Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bMiner Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.miner(player);
 				player.sendMessage(prefix + "§bMiner Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bMiner Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bMiner Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.minerGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bPotionHandler Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bPotionHandler Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.potionhandler(player);
 				player.sendMessage(prefix + "§bPotionHandler Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bPotionHandler Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bPotionHandler Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.potionhandlerGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§cRabbit Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§cRabbit Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
-				if(player.hasPermission("mizinkopvp.kit.purchase.rabbit")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.rabbit")) {
 					distribute.rabbit(player);
 					player.sendMessage(prefix + "§cRabbit Kit を選択しました!");
 				} else {
 					player.closeInventory();
 					player.sendMessage(prefix + "§cKitを購入してください");
 				}
-			} else 	if(item.getItemMeta().getDisplayName().equals("§cRabbit Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§cRabbit Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.rabbitGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bRecover Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bRecover Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.recover(player);
 				player.sendMessage(prefix + "§bRecover Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bRecover Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bRecover Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.recoverGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§cRevival Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§cRevival Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
-				if(player.hasPermission("mizinkopvp.kit.purchase.revival")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.revival")) {
 					distribute.revival(player);
 					player.sendMessage(prefix + "§cRevival Kit を選択しました!");
 				} else {
 					player.closeInventory();
 					player.sendMessage(prefix + "§cKitを購入してください");
 				}
-			} else 	if(item.getItemMeta().getDisplayName().equals("§cRevival Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§cRevival Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.revivalGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bSlasher Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bSlasher Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.slasher(player);
 				player.sendMessage(prefix + "§bSlasher Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bSlasher Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bSlasher Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.slasherGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§cSniper Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§cSniper Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
-				if(player.hasPermission("mizinkopvp.kit.purchase.sniper")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.sniper")) {
 					distribute.sniper(player);
 					player.sendMessage(prefix + "§cSniper Kit を選択しました!");
 				} else {
 					player.closeInventory();
 					player.sendMessage(prefix + "§cKitを購入してください");
 				}
-			} else 	if(item.getItemMeta().getDisplayName().equals("§cSniper Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§cSniper Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.sniperGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bStandard Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bStandard Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.standard(player);
 				player.sendMessage(prefix + "§bStandard Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bStandard Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bStandard Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.standardGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§bTank Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§bTank Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
 				distribute.tank(player);
 				player.sendMessage(prefix + "§bTank Kit を選択しました!");
-			} else 	if(item.getItemMeta().getDisplayName().equals("§bTank Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§bTank Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.tankGUI());
 			}
 
-			if(item.getItemMeta().getDisplayName().equals("§dTapiocaMilkTea Kitを選択する")
+			if (item.getItemMeta().getDisplayName().equals("§dTapiocaMilkTea Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_ALL)) {
-				if(player.hasPermission("mizinkopvp.kit.vote.tapiocamilktea")) {
+				if (player.hasPermission("mizinkopvp.kit.vote.tapiocamilktea")) {
 					distribute.tapiocamilktea(player);
 					player.sendMessage(prefix + "§dTapiocaMilkTea Kit を選択しました!");
 				} else {
 					player.sendMessage(prefix + "§cこのKitはJMSで投票をすると使用可能です!");
-					player.sendMessage(prefix + "§a投票(JMS): https://minecraft.jp/servers/azisaba.net");
+					player.sendMessage(
+							prefix + "§a投票(JMS): https://minecraft.jp/servers/azisaba.net");
 				}
-			} else 	if(item.getItemMeta().getDisplayName().equals("§dTapiocaMilkTea Kitを選択する")
+			} else if (item.getItemMeta().getDisplayName().equals("§dTapiocaMilkTea Kitを選択する")
 					&& action.equals(InventoryAction.PICKUP_HALF)) {
 				player.openInventory(indicate.tapiocamilkteaGUI());
 			}

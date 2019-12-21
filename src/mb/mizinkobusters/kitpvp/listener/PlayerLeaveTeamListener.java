@@ -10,7 +10,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
-
 import mb.mizinkobusters.kitpvp.KitPvP;
 
 public class PlayerLeaveTeamListener implements Listener {
@@ -30,9 +29,9 @@ public class PlayerLeaveTeamListener implements Listener {
 	public void onQuit(PlayerQuitEvent event) {
 		Player player = event.getPlayer();
 
-		for(Team teams : sb.getTeams()) {
-			if(teams.hasPlayer(player)) {
-				for(OfflinePlayer teammates : teams.getPlayers()) {
+		for (Team teams : sb.getTeams()) {
+			if (teams.hasPlayer(player)) {
+				for (OfflinePlayer teammates : teams.getPlayers()) {
 					teammates.getPlayer().sendMessage(prefix + "§aチームが解散されました");
 					teams.removePlayer(teammates);
 				}
@@ -45,9 +44,9 @@ public class PlayerLeaveTeamListener implements Listener {
 	public void onChangeWorld(PlayerChangedWorldEvent event) {
 		Player player = event.getPlayer();
 
-		for(Team teams : sb.getTeams()) {
-			if(teams.hasPlayer(player)) {
-				for(OfflinePlayer teammates : teams.getPlayers()) {
+		for (Team teams : sb.getTeams()) {
+			if (teams.hasPlayer(player)) {
+				for (OfflinePlayer teammates : teams.getPlayers()) {
 					teammates.getPlayer().sendMessage(prefix + "§aチームが解散されました");
 					teams.removePlayer(teammates);
 				}

@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
-
 import mb.mizinkobusters.kitpvp.KitPvP;
 
 public class Disband implements CommandExecutor {
@@ -39,7 +38,7 @@ public class Disband implements CommandExecutor {
 	Team light_purple;
 	Team yellow;
 
-	Request request = new Request((KitPvP)plugin);
+	Request request = new Request((KitPvP) plugin);
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -54,23 +53,23 @@ public class Disband implements CommandExecutor {
 
 		int l = args.length;
 
-		switch(l) {
-		case 0:
-			if(!player.getWorld().getName().equals("kitpvp")) {
-				player.sendMessage(prefix + "§cこのコマンドはこのエリアでは使用できません");
-			}
+		switch (l) {
+			case 0:
+				if (!player.getWorld().getName().equals("kitpvp")) {
+					player.sendMessage(prefix + "§cこのコマンドはこのエリアでは使用できません");
+				}
 
-			for(Team teams : sb.getTeams()) {
-				if(teams.hasEntry(player.getName())) {
-					for(OfflinePlayer teammates : teams.getPlayers()) {
-						teammates.getPlayer().sendMessage(prefix + "§aチームが解散されました");
-						teams.removePlayer(teammates);
+				for (Team teams : sb.getTeams()) {
+					if (teams.hasEntry(player.getName())) {
+						for (OfflinePlayer teammates : teams.getPlayers()) {
+							teammates.getPlayer().sendMessage(prefix + "§aチームが解散されました");
+							teams.removePlayer(teammates);
+						}
 					}
 				}
-			}
-			break;
-		default:
-			break;
+				break;
+			default:
+				break;
 		}
 		return true;
 	}

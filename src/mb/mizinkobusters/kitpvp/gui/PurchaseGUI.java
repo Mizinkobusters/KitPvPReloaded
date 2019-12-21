@@ -8,7 +8,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import mb.mizinkobusters.kitpvp.KitPvP;
 
 public class PurchaseGUI implements Listener {
@@ -27,14 +26,14 @@ public class PurchaseGUI implements Listener {
 		return gui;
 	}
 
-	DistributeKits distribute = new DistributeKits((KitPvP)plugin);
+	DistributeKits distribute = new DistributeKits((KitPvP) plugin);
 
 	@EventHandler
 	public void onItemClick(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		ItemStack item = event.getItem();
 
-		if(player.getWorld().getName().equals("kitpvp")
+		if (player.getWorld().getName().equals("kitpvp")
 				&& item.getItemMeta().getDisplayName().equals("§d§lKitを購入する")
 				&& item.getItemMeta().getDisplayName() != null || item.hasItemMeta()) {
 			player.openInventory(buygui());
@@ -43,10 +42,8 @@ public class PurchaseGUI implements Listener {
 
 	/*
 	 *
-	 *	@EventHandler
-	 *  public void onGUIClick(InventoryClickEvent event) {
-	 * 		購入処理は別プラグイン「AdvancedLogPlus」を参照してください
-	 * }
+	 * @EventHandler public void onGUIClick(InventoryClickEvent event) {
+	 * 購入処理は別プラグイン「AdvancedLogPlus」を参照してください }
 	 *
 	 */
 }

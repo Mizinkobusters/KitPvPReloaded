@@ -2,7 +2,6 @@ package mb.mizinkobusters.kitpvp.gui;
 
 import java.util.HashMap;
 import java.util.UUID;
-
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -15,7 +14,6 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-
 import mb.mizinkobusters.kitpvp.KitPvP;
 
 public class DistributeKits implements Listener {
@@ -107,7 +105,8 @@ public class DistributeKits implements Listener {
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.IRON_BOOTS));
 
-		player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 1000000, 0, false, false));
+		player.addPotionEffect(
+				new PotionEffect(PotionEffectType.WEAKNESS, 1000000, 0, false, false));
 
 		kits.put(player.getUniqueId(), "Berserker");
 	}
@@ -249,7 +248,8 @@ public class DistributeKits implements Listener {
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.IRON_BOOTS));
 
-		player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 1000000, 3, false, false));
+		player.addPotionEffect(
+				new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 1000000, 3, false, false));
 
 		kits.put(player.getUniqueId(), "Flame");
 	}
@@ -337,7 +337,8 @@ public class DistributeKits implements Listener {
 		inv.setLeggings(new ItemStack(Material.LEATHER_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.LEATHER_BOOTS));
 
-		player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 1000000, 1, false, false));
+		player.addPotionEffect(
+				new PotionEffect(PotionEffectType.FAST_DIGGING, 1000000, 1, false, false));
 
 		kits.put(player.getUniqueId(), "Miner");
 	}
@@ -346,9 +347,9 @@ public class DistributeKits implements Listener {
 		PlayerInventory inv = player.getInventory();
 
 		inv.addItem(new ItemStack(Material.IRON_SWORD));
-		inv.addItem(new ItemStack(Material.POTION, 2, (short)16396)); //負傷
-		inv.addItem(new ItemStack(Material.POTION, 2, (short)16388)); //毒
-		inv.addItem(new ItemStack(Material.POTION, 2, (short)16399)); //治癒
+		inv.addItem(new ItemStack(Material.POTION, 2, (short) 16396)); // 負傷
+		inv.addItem(new ItemStack(Material.POTION, 2, (short) 16388)); // 毒
+		inv.addItem(new ItemStack(Material.POTION, 2, (short) 16399)); // 治癒
 		bone(player);
 
 		inv.setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
