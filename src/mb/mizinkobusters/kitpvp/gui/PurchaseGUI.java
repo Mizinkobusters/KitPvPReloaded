@@ -21,7 +21,7 @@ public class PurchaseGUI implements Listener {
 
 
 	public Inventory buygui() {
-		Inventory gui = Bukkit.createInventory(null, 6, "§e§lKit購入メニュー");
+		Inventory gui = Bukkit.createInventory(null, 18, "§e§lKit購入メニュー");
 
 		return gui;
 	}
@@ -33,11 +33,17 @@ public class PurchaseGUI implements Listener {
 		Player player = event.getPlayer();
 		ItemStack item = event.getItem();
 
-		if (player.getWorld().getName().equals("kitpvp")
-				&& item.getItemMeta().getDisplayName().equals("§d§lKitを購入する")
-				&& item.getItemMeta().getDisplayName() != null || item.hasItemMeta()) {
-			player.openInventory(buygui());
-		}
+		if (item == null)
+			return;
+
+		if (item.getItemMeta() == null || !item.hasItemMeta())
+			return;
+
+		if (item.getItemMeta().getDisplayName() != null || item.hasItemMeta())
+			if (player.getWorld().getName().equals("kitpvp")
+					&& item.getItemMeta().getDisplayName().equals("§d§lKitを購入する")) {
+				player.openInventory(buygui());
+			}
 	}
 
 	/*

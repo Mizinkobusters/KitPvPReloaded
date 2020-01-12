@@ -48,7 +48,7 @@ import mb.mizinkobusters.kitpvp.listener.PlayerRespawnListener;
 
 public class KitPvP extends JavaPlugin implements Listener {
 
-	Scoreboard sb = Bukkit.getScoreboardManager().getNewScoreboard();
+	Scoreboard sb;
 	Team black;
 	Team dark_blue;
 	Team dark_green;
@@ -124,6 +124,8 @@ public class KitPvP extends JavaPlugin implements Listener {
 		Bukkit.getPluginCommand("Request").setExecutor(new Request(this));
 
 		// チーム生成
+		sb = Bukkit.getScoreboardManager().getNewScoreboard();
+
 		black = sb.getTeam("black");
 		if (black == null) {
 			black = createKitPvPTeam("black");
