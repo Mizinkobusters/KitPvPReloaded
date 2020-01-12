@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.ItemStack;
@@ -31,6 +32,8 @@ public class PlayerRespawnListener implements Listener {
 	HashMap<UUID, String> kits = new PlayerKillListener((KitPvP) plugin).kits;
 
 	String prefix = "§7[§dKitPvP§7] ";
+	String respawn = "respawn";
+	String fast = "fastrespawn";
 
 	public void bone(Player player) {
 		PlayerInventory inv = player.getInventory();
@@ -60,37 +63,37 @@ public class PlayerRespawnListener implements Listener {
 				if (player.getItemInHand().getType().equals(Material.BONE))
 					player.getItemInHand().setAmount(0);
 				if (player.hasMetadata("combat")) {
-					player.setMetadata("respawn", new FixedMetadataValue(plugin, player));
+					player.setMetadata(respawn, new FixedMetadataValue(plugin, player));
 					player.sendMessage(prefix + "§a5秒後§eにリスポーンします");
 					player.sendMessage(prefix + "§cその場から動かないでください...");
 
 					new BukkitRunnable() {
 						@Override
 						public void run() {
-							if (player.hasMetadata("respawn")) {
+							if (player.hasMetadata(respawn)) {
 								player.teleport(
 										new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0),
 										TeleportCause.PLUGIN);
 								player.sendMessage(prefix + "§aリスポーンしました!");
-								player.removeMetadata("respawn", plugin);
+								player.removeMetadata(respawn, plugin);
 							}
 						}
 					}.runTaskLater(plugin, 100);
 
 				} else {
-					player.setMetadata("fastrespawn", new FixedMetadataValue(plugin, player));
+					player.setMetadata(fast, new FixedMetadataValue(plugin, player));
 					player.sendMessage(prefix + "§a1秒後§eにリスポーンします");
 					player.sendMessage(prefix + "§cその場から動かないでください...");
 
 					new BukkitRunnable() {
 						@Override
 						public void run() {
-							if (player.hasMetadata("fastrespawn")) {
+							if (player.hasMetadata(fast)) {
 								player.teleport(
 										new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0),
 										TeleportCause.PLUGIN);
 								player.sendMessage(prefix + "§aリスポーンしました!");
-								player.removeMetadata("fastrespawn", plugin);
+								player.removeMetadata(fast, plugin);
 							}
 						}
 					}.runTaskLater(plugin, 20);
@@ -102,18 +105,17 @@ public class PlayerRespawnListener implements Listener {
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
-		// PlayerInventory inv = player.getInventory();
 		Location from = event.getFrom();
 		Location to = event.getTo();
 
-		if (player.getWorld().getName().equals("kitpvp") && player.hasMetadata("respawn")
-				|| player.hasMetadata("fastrespawn")) {
+		if (player.getWorld().getName().equals("kitpvp") && player.hasMetadata(respawn)
+				|| player.hasMetadata(fast)) {
 			// X, Y, Z座標のいずれかで移動が確認されたらリスポーンをキャンセル
 			if (Math.abs(from.getX() - to.getX()) >= 1 || Math.abs(from.getY() - to.getY()) >= 1
 					|| Math.abs(from.getZ() - to.getZ()) >= 1) {
-				player.removeMetadata("respawn", plugin);
-				player.removeMetadata("fastrespawn", plugin);
-				player.sendMessage(prefix + "§cリスポーンを中断しました");
+				player.removeMetadata(respawn, plugin);
+				player.removeMetadata(fast, plugin);
+				player.sendMessage(prefix + "§c移動したためリスポーンを中断しました");
 				bone(player);
 			}
 		}
@@ -124,12 +126,24 @@ public class PlayerRespawnListener implements Listener {
 		Player player = event.getPlayer();
 		TeleportCause cause = event.getCause();
 
-		if (player.getWorld().getName().equals("kitpvp") && cause.equals(TeleportCause.ENDER_PEARL)
-				|| cause.equals(TeleportCause.PLUGIN)) {
-			player.removeMetadata("respawn", plugin);
-			player.removeMetadata("fastrespawn", plugin);
-			player.sendMessage(prefix + "§cリスポーンを中断しました");
-			bone(player);
+		if (player.getWorld().getName().equals("kitpvp") && player.hasMetadata(respawn)
+				|| player.hasMetadata(fast)) {
+			if (cause.equals(TeleportCause.ENDER_PEARL) || cause.equals(TeleportCause.PLUGIN)) {
+				player.removeMetadata(respawn, plugin);
+				player.removeMetadata(fast, plugin);
+				player.sendMessage(prefix + "§cテレポートしたためリスポーンを中断しました");
+				bone(player);
+			}
 		}
+	}
+
+	@EventHandler
+	public void onQuit(PlayerQuitEvent event) {
+		Player player = event.getPlayer();
+
+		if (player.hasMetadata(respawn))
+			player.removeMetadata(respawn, plugin);
+		if (player.hasMetadata(fast))
+			player.removeMetadata(fast, plugin);
 	}
 }
