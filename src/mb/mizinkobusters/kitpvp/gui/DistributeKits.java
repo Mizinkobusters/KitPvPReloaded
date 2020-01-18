@@ -498,5 +498,4 @@ public class DistributeKits implements Listener {
 
 		kits.put(player.getUniqueId(), "TapiocaMilkTea");
 	}
-
 }
