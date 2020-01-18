@@ -62,7 +62,7 @@ public class PlayerRespawnListener implements Listener {
 					&& item.getItemMeta().getDisplayName().equals("§c§lクリックでリスポーン")) {
 				if (player.getItemInHand().getType().equals(Material.BONE))
 					player.getItemInHand().setAmount(0);
-				if (player.hasMetadata("combat")) {
+				if (kits.containsKey(player.getUniqueId())) {
 					player.setMetadata(respawn, new FixedMetadataValue(plugin, player));
 					player.sendMessage(prefix + "§a5秒後§eにリスポーンします");
 					player.sendMessage(prefix + "§cその場から動かないでください...");
@@ -72,8 +72,7 @@ public class PlayerRespawnListener implements Listener {
 						public void run() {
 							if (player.hasMetadata(respawn)) {
 								player.teleport(
-										new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0),
-										TeleportCause.PLUGIN);
+										new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0));
 								player.sendMessage(prefix + "§aリスポーンしました!");
 								player.removeMetadata(respawn, plugin);
 							}
@@ -90,10 +89,9 @@ public class PlayerRespawnListener implements Listener {
 						public void run() {
 							if (player.hasMetadata(fast)) {
 								player.teleport(
-										new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0),
-										TeleportCause.PLUGIN);
-								player.sendMessage(prefix + "§aリスポーンしました!");
+										new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0));
 								player.removeMetadata(fast, plugin);
+								player.sendMessage(prefix + "§aリスポーンしました!");
 							}
 						}
 					}.runTaskLater(plugin, 20);
@@ -128,7 +126,7 @@ public class PlayerRespawnListener implements Listener {
 
 		if (player.getWorld().getName().equals("kitpvp") && player.hasMetadata(respawn)
 				|| player.hasMetadata(fast)) {
-			if (cause.equals(TeleportCause.ENDER_PEARL) || cause.equals(TeleportCause.PLUGIN)) {
+			if (cause.equals(TeleportCause.ENDER_PEARL)) {
 				player.removeMetadata(respawn, plugin);
 				player.removeMetadata(fast, plugin);
 				player.sendMessage(prefix + "§cテレポートしたためリスポーンを中断しました");
