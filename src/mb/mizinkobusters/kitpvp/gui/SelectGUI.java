@@ -2,6 +2,8 @@ package mb.mizinkobusters.kitpvp.gui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -20,15 +22,22 @@ import mb.mizinkobusters.kitpvp.KitPvP;
 public class SelectGUI implements Listener {
 
 	JavaPlugin plugin;
-	ItemMeta meta;
-	String prefix = "§7[§dKitPvP§7] ";
 
 	public SelectGUI(KitPvP plugin) {
 		this.plugin = plugin;
 	}
 
+	private HashMap<UUID, String> kits = new HashMap<>();
+
+	public HashMap<UUID, String> getKits() {
+		return kits;
+	}
+
 	DistributeKits distribute = new DistributeKits((KitPvP) plugin);
 	IndicateKits indicate = new IndicateKits((KitPvP) plugin);
+
+	ItemMeta meta;
+	String prefix = "§7[§dKitPvP§7] ";
 
 	public Inventory kitgui() {
 		Inventory gui = Bukkit.createInventory(null, 54, "§d§lKit選択メニュー");
@@ -249,6 +258,9 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.archer(player);
+					kits.put(player.getUniqueId(), "Archer");
+					player.sendMessage(
+							"現在セットされている値は" + kits.getOrDefault(player.getUniqueId(), null));
 					player.sendMessage(prefix + "§bArcher Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bArcher Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {

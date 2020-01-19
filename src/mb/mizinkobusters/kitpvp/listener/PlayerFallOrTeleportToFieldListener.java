@@ -16,19 +16,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.gui.DistributeKits;
+import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 
 public class PlayerFallOrTeleportToFieldListener implements Listener {
 
 	JavaPlugin plugin;
+	private SelectGUI kits;
 
-	public PlayerFallOrTeleportToFieldListener(KitPvP plugin) {
+	public PlayerFallOrTeleportToFieldListener(KitPvP plugin, SelectGUI kits) {
 		this.plugin = plugin;
-	}
-
-	private DistributeKits kits;
-
-	public PlayerFallOrTeleportToFieldListener(DistributeKits kits) {
 		this.kits = kits;
 	}
 

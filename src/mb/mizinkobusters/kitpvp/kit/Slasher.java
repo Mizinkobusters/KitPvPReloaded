@@ -10,7 +10,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.gui.DistributeKits;
+import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 
 public class Slasher implements Listener {
 
@@ -21,13 +21,10 @@ public class Slasher implements Listener {
 	 */
 
 	JavaPlugin plugin;
-	DistributeKits kits;
+	SelectGUI kits;
 
-	public Slasher(KitPvP plugin) {
+	public Slasher(KitPvP plugin, SelectGUI kits) {
 		this.plugin = plugin;
-	}
-
-	public Slasher(DistributeKits kits) {
 		this.kits = kits;
 	}
 

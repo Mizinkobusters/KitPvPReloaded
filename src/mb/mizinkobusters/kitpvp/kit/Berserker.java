@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.gui.DistributeKits;
+import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 
 public class Berserker implements Listener {
 
@@ -23,13 +23,10 @@ public class Berserker implements Listener {
 	 */
 
 	JavaPlugin plugin;
-	DistributeKits kits;
+	SelectGUI kits;
 
-	public Berserker(KitPvP plugin) {
+	public Berserker(KitPvP plugin, SelectGUI kits) {
 		this.plugin = plugin;
-	}
-
-	public Berserker(DistributeKits kits) {
 		this.kits = kits;
 	}
 

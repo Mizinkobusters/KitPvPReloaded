@@ -17,19 +17,16 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.gui.DistributeKits;
+import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 
 public class PlayerRespawnListener implements Listener {
 
 	JavaPlugin plugin;
-	private DistributeKits kits;
+	private SelectGUI kits;
 	ItemMeta meta;
 
-	public PlayerRespawnListener(KitPvP plugin) {
+	public PlayerRespawnListener(KitPvP plugin, SelectGUI kits) {
 		this.plugin = plugin;
-	}
-
-	public PlayerRespawnListener(DistributeKits kits) {
 		this.kits = kits;
 	}
 

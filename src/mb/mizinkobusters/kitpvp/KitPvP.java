@@ -9,7 +9,6 @@ import org.bukkit.scoreboard.Team;
 import mb.mizinkobusters.kitpvp.command.Accept;
 import mb.mizinkobusters.kitpvp.command.Disband;
 import mb.mizinkobusters.kitpvp.command.Request;
-import mb.mizinkobusters.kitpvp.gui.DistributeKits;
 import mb.mizinkobusters.kitpvp.gui.IndicateKits;
 import mb.mizinkobusters.kitpvp.gui.PurchaseGUI;
 import mb.mizinkobusters.kitpvp.gui.SelectGUI;
@@ -76,47 +75,49 @@ public class KitPvP extends JavaPlugin implements Listener {
 		System.out.println("Hello :)");
 		System.out.println("");
 
+		SelectGUI select = new SelectGUI(this);
+
 		// Listener 登録
-		Bukkit.getPluginManager().registerEvents(new PlayerFallOrTeleportToFieldListener(this),
-				this);
+		Bukkit.getPluginManager()
+				.registerEvents(new PlayerFallOrTeleportToFieldListener(this, select), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerHasEntriesListener(this), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerItemDamageListener(this), this);
-		Bukkit.getPluginManager().registerEvents(new PlayerKillListener(this), this);
+		Bukkit.getPluginManager().registerEvents(new PlayerKillListener(this, select), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerLeaveTeamListener(this), this);
-		Bukkit.getPluginManager().registerEvents(new PlayerLoggingListener(this), this);
-		Bukkit.getPluginManager().registerEvents(new PlayerRespawnListener(this), this);
+		Bukkit.getPluginManager().registerEvents(new PlayerLoggingListener(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new PlayerRespawnListener(this, select), this);
 
-		Bukkit.getPluginManager().registerEvents(new DistributeKits(this), this);
+		Bukkit.getPluginManager().registerEvents(select, this);
 		Bukkit.getPluginManager().registerEvents(new IndicateKits(this), this);
 		Bukkit.getPluginManager().registerEvents(new PurchaseGUI(this), this);
 		Bukkit.getPluginManager().registerEvents(new SelectGUI(this), this);
 
 		// Kit 登録
-		Bukkit.getPluginManager().registerEvents(new Archer(this), this);
-		Bukkit.getPluginManager().registerEvents(new Astronaut(this), this);
-		Bukkit.getPluginManager().registerEvents(new Attacker(this), this);
-		Bukkit.getPluginManager().registerEvents(new Berserker(this), this);
-		Bukkit.getPluginManager().registerEvents(new Blizzard(this), this);
-		Bukkit.getPluginManager().registerEvents(new Boxer(this), this);
-		Bukkit.getPluginManager().registerEvents(new Comet(this), this);
-		Bukkit.getPluginManager().registerEvents(new Counter(this), this);
-		Bukkit.getPluginManager().registerEvents(new Enderman(this), this);
-		Bukkit.getPluginManager().registerEvents(new Fisherman(this), this);
-		Bukkit.getPluginManager().registerEvents(new Flame(this), this);
-		Bukkit.getPluginManager().registerEvents(new HealthBoost(this), this);
-		Bukkit.getPluginManager().registerEvents(new Iron(this), this);
-		Bukkit.getPluginManager().registerEvents(new Lightning(this), this);
-		Bukkit.getPluginManager().registerEvents(new Madness(this), this);
-		Bukkit.getPluginManager().registerEvents(new Miner(this), this);
-		Bukkit.getPluginManager().registerEvents(new PotionHandler(this), this);
-		Bukkit.getPluginManager().registerEvents(new Rabbit(this), this);
-		Bukkit.getPluginManager().registerEvents(new Recover(this), this);
-		Bukkit.getPluginManager().registerEvents(new Revival(this), this);
-		Bukkit.getPluginManager().registerEvents(new Slasher(this), this);
-		Bukkit.getPluginManager().registerEvents(new Sniper(this), this);
-		Bukkit.getPluginManager().registerEvents(new Standard(this), this);
-		Bukkit.getPluginManager().registerEvents(new Tank(this), this);
-		Bukkit.getPluginManager().registerEvents(new TapiocaMilkTea(this), this);
+		Bukkit.getPluginManager().registerEvents(new Archer(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Astronaut(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Attacker(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Berserker(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Blizzard(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Boxer(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Comet(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Counter(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Enderman(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Fisherman(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Flame(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new HealthBoost(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Iron(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Lightning(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Madness(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Miner(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new PotionHandler(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Rabbit(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Recover(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Revival(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Slasher(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Sniper(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Standard(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new Tank(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new TapiocaMilkTea(this, select), this);
 
 		// Command 登録
 		Bukkit.getPluginCommand("Accept").setExecutor(new Accept(this));

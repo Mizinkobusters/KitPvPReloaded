@@ -1,7 +1,5 @@
 package mb.mizinkobusters.kitpvp.gui;
 
-import java.util.HashMap;
-import java.util.UUID;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -22,12 +20,6 @@ public class DistributeKits implements Listener {
 
 	public DistributeKits(KitPvP plugin) {
 		this.plugin = plugin;
-	}
-
-	private HashMap<UUID, String> kits = new HashMap<>();
-
-	public HashMap<UUID, String> getKits() {
-		return kits;
 	}
 
 	ItemMeta meta;
@@ -59,8 +51,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.LEATHER_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.LEATHER_BOOTS));
-
-		kits.put(player.getUniqueId(), "Archer");
 	}
 
 	public void astronaut(Player player) {
@@ -78,8 +68,6 @@ public class DistributeKits implements Listener {
 
 		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 1000000, 2, false, false));
 		player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 1000000, 1, false, false));
-
-		kits.put(player.getUniqueId(), "Astronaut");
 	}
 
 	public void attacker(Player player) {
@@ -94,8 +82,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.IRON_BOOTS));
-
-		kits.put(player.getUniqueId(), "Attacker");
 	}
 
 	public void berserker(Player player) {
@@ -111,8 +97,6 @@ public class DistributeKits implements Listener {
 
 		player.addPotionEffect(
 				new PotionEffect(PotionEffectType.WEAKNESS, 1000000, 0, false, false));
-
-		kits.put(player.getUniqueId(), "Berserker");
 	}
 
 	public void blizzard(Player player) {
@@ -126,8 +110,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.DIAMOND_BOOTS));
-
-		kits.put(player.getUniqueId(), "Blizzard");
 	}
 
 	public void boxer(Player player) {
@@ -140,8 +122,6 @@ public class DistributeKits implements Listener {
 		bone(player);
 
 		inv.setLeggings(new ItemStack(Material.LEATHER_LEGGINGS));
-
-		kits.put(player.getUniqueId(), "Boxer");
 	}
 
 	public void comet(Player player) {
@@ -179,8 +159,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(chestplate);
 		inv.setLeggings(leggings);
 		inv.setBoots(boots);
-
-		kits.put(player.getUniqueId(), "Comet");
 	}
 
 	public void counter(Player player) {
@@ -194,8 +172,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.DIAMOND_BOOTS));
-
-		kits.put(player.getUniqueId(), "Counter");
 	}
 
 	public void enderman(Player player) {
@@ -213,8 +189,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(boots);
-
-		kits.put(player.getUniqueId(), "Enderman");
 	}
 
 	public void fisherman(Player player) {
@@ -229,8 +203,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.LEATHER_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.LEATHER_BOOTS));
-
-		kits.put(player.getUniqueId(), "Fisherman");
 	}
 
 	public void flame(Player player) {
@@ -254,8 +226,6 @@ public class DistributeKits implements Listener {
 
 		player.addPotionEffect(
 				new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 1000000, 3, false, false));
-
-		kits.put(player.getUniqueId(), "Flame");
 	}
 
 	public void healthboost(Player player) {
@@ -270,8 +240,6 @@ public class DistributeKits implements Listener {
 		inv.setBoots(new ItemStack(Material.IRON_BOOTS));
 
 		player.setMaxHealth(18.0);
-
-		kits.put(player.getUniqueId(), "HealthBoost");
 	}
 
 	public void iron(Player player) {
@@ -292,8 +260,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(chestplate);
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(boots);
-
-		kits.put(player.getUniqueId(), "Iron");
 	}
 
 	public void lightning(Player player) {
@@ -310,8 +276,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.GOLD_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.IRON_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.GOLD_BOOTS));
-
-		kits.put(player.getUniqueId(), "Lightning");
 	}
 
 	public void madness(Player player) {
@@ -325,8 +289,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.IRON_BOOTS));
-
-		kits.put(player.getUniqueId(), "Madness");
 	}
 
 	public void miner(Player player) {
@@ -343,8 +305,6 @@ public class DistributeKits implements Listener {
 
 		player.addPotionEffect(
 				new PotionEffect(PotionEffectType.FAST_DIGGING, 1000000, 1, false, false));
-
-		kits.put(player.getUniqueId(), "Miner");
 	}
 
 	public void potionhandler(Player player) {
@@ -360,8 +320,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
-
-		kits.put(player.getUniqueId(), "PotionHandler");
 	}
 
 	public void rabbit(Player player) {
@@ -381,8 +339,6 @@ public class DistributeKits implements Listener {
 
 		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 1000000, 1, false, false));
 		player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 1000000, 1, false, false));
-
-		kits.put(player.getUniqueId(), "Rabbit");
 	}
 
 	public void recover(Player player) {
@@ -395,8 +351,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.DIAMOND_BOOTS));
-
-		kits.put(player.getUniqueId(), "Recover");
 	}
 
 	public void revival(Player player) {
@@ -409,8 +363,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.IRON_BOOTS));
-
-		kits.put(player.getUniqueId(), "Standard");
 	}
 
 	public void slasher(Player player) {
@@ -430,8 +382,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.LEATHER_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
-
-		kits.put(player.getUniqueId(), "Slasher");
 	}
 
 	public void sniper(Player player) {
@@ -450,8 +400,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.CHAINMAIL_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.CHAINMAIL_BOOTS));
-
-		kits.put(player.getUniqueId(), "Sniper");
 	}
 
 	public void standard(Player player) {
@@ -465,8 +413,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.IRON_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.IRON_BOOTS));
-
-		kits.put(player.getUniqueId(), "Standard");
 	}
 
 	public void tank(Player player) {
@@ -483,8 +429,6 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.DIAMOND_BOOTS));
-
-		kits.put(player.getUniqueId(), "Tank");
 	}
 
 	public void tapiocamilktea(Player player) {
@@ -499,7 +443,5 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.IRON_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.IRON_BOOTS));
-
-		kits.put(player.getUniqueId(), "TapiocaMilkTea");
 	}
 }

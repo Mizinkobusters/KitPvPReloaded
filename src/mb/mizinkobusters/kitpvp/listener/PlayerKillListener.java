@@ -12,18 +12,15 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.gui.DistributeKits;
+import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 
 public class PlayerKillListener implements Listener {
 
 	JavaPlugin plugin;
-	DistributeKits kits;
+	SelectGUI kits;
 
-	public PlayerKillListener(KitPvP plugin) {
+	public PlayerKillListener(KitPvP plugin, SelectGUI kits) {
 		this.plugin = plugin;
-	}
-
-	public PlayerKillListener(DistributeKits kits) {
 		this.kits = kits;
 	}
 

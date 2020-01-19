@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffectType;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.gui.DistributeKits;
+import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 
 public class TapiocaMilkTea implements Listener {
 
@@ -23,13 +23,10 @@ public class TapiocaMilkTea implements Listener {
 	 */
 
 	JavaPlugin plugin;
-	DistributeKits kits;
+	SelectGUI kits;
 
-	public TapiocaMilkTea(KitPvP plugin) {
+	public TapiocaMilkTea(KitPvP plugin, SelectGUI kits) {
 		this.plugin = plugin;
-	}
-
-	public TapiocaMilkTea(DistributeKits kits) {
 		this.kits = kits;
 	}
 

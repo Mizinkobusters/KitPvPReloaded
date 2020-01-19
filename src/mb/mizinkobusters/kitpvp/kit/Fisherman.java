@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.gui.DistributeKits;
+import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 
 public class Fisherman implements Listener {
 
@@ -25,13 +25,10 @@ public class Fisherman implements Listener {
 	 */
 
 	JavaPlugin plugin;
-	DistributeKits kits;
+	SelectGUI kits;
 
-	public Fisherman(KitPvP plugin) {
+	public Fisherman(KitPvP plugin, SelectGUI kits) {
 		this.plugin = plugin;
-	}
-
-	public Fisherman(DistributeKits kits) {
 		this.kits = kits;
 	}
 

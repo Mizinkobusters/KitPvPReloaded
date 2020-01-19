@@ -10,7 +10,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.gui.DistributeKits;
+import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 
 public class Enderman implements Listener {
 
@@ -21,13 +21,10 @@ public class Enderman implements Listener {
 	 */
 
 	JavaPlugin plugin;
-	DistributeKits kits;
+	SelectGUI kits;
 
-	public Enderman(KitPvP plugin) {
+	public Enderman(KitPvP plugin, SelectGUI kits) {
 		this.plugin = plugin;
-	}
-
-	public Enderman(DistributeKits kits) {
 		this.kits = kits;
 	}
 

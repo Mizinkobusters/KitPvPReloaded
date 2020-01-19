@@ -14,7 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.gui.DistributeKits;
+import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 
 public class Blizzard implements Listener {
 
@@ -25,13 +25,10 @@ public class Blizzard implements Listener {
 	 */
 
 	JavaPlugin plugin;
-	DistributeKits kits;
+	SelectGUI kits;
 
-	public Blizzard(KitPvP plugin) {
+	public Blizzard(KitPvP plugin, SelectGUI kits) {
 		this.plugin = plugin;
-	}
-
-	public Blizzard(DistributeKits kits) {
 		this.kits = kits;
 	}
 
