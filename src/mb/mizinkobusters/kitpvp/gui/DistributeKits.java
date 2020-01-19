@@ -24,7 +24,11 @@ public class DistributeKits implements Listener {
 		this.plugin = plugin;
 	}
 
-	HashMap<UUID, String> kits = new HashMap<UUID, String>();
+	private HashMap<UUID, String> kits = new HashMap<>();
+
+	public HashMap<UUID, String> getKits() {
+		return kits;
+	}
 
 	ItemMeta meta;
 	LeatherArmorMeta lmeta;

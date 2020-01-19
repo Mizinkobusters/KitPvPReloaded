@@ -217,11 +217,13 @@ public class SelectGUI implements Listener {
 		if (item.getItemMeta() == null || !item.hasItemMeta())
 			return;
 
-		if (item.getItemMeta().getDisplayName() != null || item.hasItemMeta())
-			if (player.getWorld().getName().equals("kitpvp")
-					&& item.getItemMeta().getDisplayName().equals("§d§lKitを選択する")) {
-				player.openInventory(kitgui());
+		if (player.getWorld().getName().equals("kitpvp")) {
+			if (item.getItemMeta().getDisplayName() != null || item.hasItemMeta()) {
+				if (item.getItemMeta().getDisplayName().equals("§d§lKitを選択する")) {
+					player.openInventory(kitgui());
+				}
 			}
+		}
 	}
 
 	@EventHandler
@@ -231,7 +233,10 @@ public class SelectGUI implements Listener {
 		ItemStack item = event.getCurrentItem();
 		InventoryAction action = event.getAction();
 
-		if (item == null || item.getItemMeta() == null)
+		if (item == null)
+			return;
+
+		if (item.getItemMeta() == null || !item.hasItemMeta())
 			return;
 
 		if (item != null && item.getItemMeta() != null || item.hasItemMeta()) {

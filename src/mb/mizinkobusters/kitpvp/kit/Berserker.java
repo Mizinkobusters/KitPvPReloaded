@@ -1,7 +1,5 @@
 package mb.mizinkobusters.kitpvp.kit;
 
-import java.util.HashMap;
-import java.util.UUID;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -14,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.listener.PlayerKillListener;
+import mb.mizinkobusters.kitpvp.gui.DistributeKits;
 
 public class Berserker implements Listener {
 
@@ -25,12 +23,15 @@ public class Berserker implements Listener {
 	 */
 
 	JavaPlugin plugin;
+	DistributeKits kits;
 
 	public Berserker(KitPvP plugin) {
 		this.plugin = plugin;
 	}
 
-	HashMap<UUID, String> kits = new PlayerKillListener((KitPvP) plugin).kits;
+	public Berserker(DistributeKits kits) {
+		this.kits = kits;
+	}
 
 	@EventHandler
 	public void onKill(PlayerDeathEvent event) {
@@ -52,11 +53,11 @@ public class Berserker implements Listener {
 		Player damagee = (Player) event.getEntity();
 		Player damager = (Player) event.getDamager();
 
-		if (kits.get(damagee.getUniqueId()).equals("Berserker")) {
+		if (kits.getKits().get(damagee.getUniqueId()).equals("Berserker")) {
 			return;
 		}
 
-		if (kits.get(damager.getUniqueId()).equals("Berserker")) {
+		if (kits.getKits().get(damager.getUniqueId()).equals("Berserker")) {
 			return;
 		}
 	}

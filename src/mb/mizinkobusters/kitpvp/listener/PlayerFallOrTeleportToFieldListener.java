@@ -1,7 +1,5 @@
 package mb.mizinkobusters.kitpvp.listener;
 
-import java.util.HashMap;
-import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import mb.mizinkobusters.kitpvp.KitPvP;
+import mb.mizinkobusters.kitpvp.gui.DistributeKits;
 
 public class PlayerFallOrTeleportToFieldListener implements Listener {
 
@@ -27,7 +26,11 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 		this.plugin = plugin;
 	}
 
-	HashMap<UUID, String> kits = new PlayerKillListener((KitPvP) plugin).kits;
+	private DistributeKits kits;
+
+	public PlayerFallOrTeleportToFieldListener(DistributeKits kits) {
+		this.kits = kits;
+	}
 
 	String prefix = "§7[§dKitPvP§7] ";
 
@@ -39,7 +42,7 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 
 		if (player.getWorld().getName().equals("kitpvp") && cause.equals(DamageCause.FALL)
 				&& material.equals(Material.SPONGE)) {
-			if (kits.containsKey(player.getUniqueId())) {
+			if (kits.getKits().containsKey(player.getUniqueId())) {
 				event.setCancelled(true);
 				player.addPotionEffect(
 						new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60, 3, false, false));
@@ -47,6 +50,8 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 				event.setCancelled(true);
 				player.teleport(new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0));
 				player.sendMessage(prefix + "§cKitを選択してください");
+				player.sendMessage(
+						"現在セットされている値は" + kits.getKits().getOrDefault(player.getUniqueId(), null));
 			}
 		}
 	}
@@ -60,14 +65,16 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 			if (Bukkit.getWorld(player.getWorld().getName())
 					.getBlockAt(event.getClickedBlock().getX(), event.getClickedBlock().getY() - 1,
 							event.getClickedBlock().getZ())
-					.getType().equals(Material.GLASS)) {
-				if (kits.containsKey(player.getUniqueId())) {
+					.getType().equals(Material.GRASS)) {
+				if (kits.getKits().containsKey(player.getUniqueId())) {
 					player.teleport(new Location(Bukkit.getWorld("kitpvp"), 41.5, 4.0, 54.5),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,
 							3, false, false));
 				} else {
 					player.sendMessage(prefix + "§cKitを選択してください");
+					player.sendMessage("現在セットされている値は"
+							+ kits.getKits().getOrDefault(player.getUniqueId(), null));
 				}
 			}
 
@@ -75,7 +82,7 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 					.getBlockAt(event.getClickedBlock().getX(), event.getClickedBlock().getY() - 1,
 							event.getClickedBlock().getZ())
 					.getType().equals(Material.SANDSTONE)) {
-				if (kits.containsKey(player.getUniqueId())) {
+				if (kits.getKits().containsKey(player.getUniqueId())) {
 					player.teleport(new Location(Bukkit.getWorld("kitpvp"), -63.5, 4.0, 11.5),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,
@@ -89,7 +96,7 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 					.getBlockAt(event.getClickedBlock().getX(), event.getClickedBlock().getY() - 1,
 							event.getClickedBlock().getZ())
 					.getType().equals(Material.NETHERRACK)) {
-				if (kits.containsKey(player.getUniqueId())) {
+				if (kits.getKits().containsKey(player.getUniqueId())) {
 					player.teleport(new Location(Bukkit.getWorld("kitpvp"), -11.5, 6.0, -53.5),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,
@@ -103,7 +110,7 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 					.getBlockAt(event.getClickedBlock().getX(), event.getClickedBlock().getY() - 1,
 							event.getClickedBlock().getZ())
 					.getType().equals(Material.MYCEL)) {
-				if (kits.containsKey(player.getUniqueId())) {
+				if (kits.getKits().containsKey(player.getUniqueId())) {
 					player.teleport(new Location(Bukkit.getWorld("kitpvp"), 68.5, 11.0, -14.5),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,

@@ -1,8 +1,6 @@
 package mb.mizinkobusters.kitpvp.kit;
 
-import java.util.HashMap;
 import java.util.Random;
-import java.util.UUID;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -13,7 +11,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.listener.PlayerKillListener;
+import mb.mizinkobusters.kitpvp.gui.DistributeKits;
 
 public class Lightning implements Listener {
 
@@ -24,12 +22,15 @@ public class Lightning implements Listener {
 	 */
 
 	JavaPlugin plugin;
+	DistributeKits kits;
 
 	public Lightning(KitPvP plugin) {
 		this.plugin = plugin;
 	}
 
-	HashMap<UUID, String> kits = new PlayerKillListener((KitPvP) plugin).kits;
+	public Lightning(DistributeKits kits) {
+		this.kits = kits;
+	}
 
 	@EventHandler
 	public void onKill(PlayerDeathEvent event) {
@@ -49,11 +50,11 @@ public class Lightning implements Listener {
 		Random r = new Random();
 		int i = r.nextInt(6);
 
-		if (kits.get(damagee.getUniqueId()).equals("Lightning")) {
+		if (kits.getKits().get(damagee.getUniqueId()).equals("Lightning")) {
 			return;
 		}
 
-		if (kits.get(damager.getUniqueId()).equals("Lightning") && damager.hasMetadata("combat")
+		if (kits.getKits().get(damager.getUniqueId()).equals("Lightning") && !event.isCancelled()
 				&& i == 0) {
 			Random d = new Random();
 			int di = d.nextInt(5);
@@ -63,12 +64,4 @@ public class Lightning implements Listener {
 		}
 
 	}
-
-	/*
-	 * @EventHandler public void onDamageNotEntity(EntityDamageEvent event) { Player damagee =
-	 * (Player) event.getEntity(); DamageCause cause = event.getCause();
-	 * 
-	 * if (kits.get(damagee.getUniqueId()).equals("Lightning") &&
-	 * cause.equals(DamageCause.LIGHTNING)) { event.setCancelled(true); } }
-	 */
 }

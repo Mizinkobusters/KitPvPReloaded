@@ -1,7 +1,5 @@
 package mb.mizinkobusters.kitpvp.kit;
 
-import java.util.HashMap;
-import java.util.UUID;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -12,10 +10,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.listener.PlayerKillListener;
+import mb.mizinkobusters.kitpvp.gui.DistributeKits;
 
 public class Fisherman implements Listener {
 
@@ -26,12 +25,15 @@ public class Fisherman implements Listener {
 	 */
 
 	JavaPlugin plugin;
+	DistributeKits kits;
 
 	public Fisherman(KitPvP plugin) {
 		this.plugin = plugin;
 	}
 
-	HashMap<UUID, String> kits = new PlayerKillListener((KitPvP) plugin).kits;
+	public Fisherman(DistributeKits kits) {
+		this.kits = kits;
+	}
 
 	@EventHandler
 	public void onKill(PlayerDeathEvent event) {
@@ -49,11 +51,11 @@ public class Fisherman implements Listener {
 		Player damagee = (Player) event.getEntity();
 		Player damager = (Player) event.getDamager();
 
-		if (kits.get(damagee.getUniqueId()).equals("Fisherman")) {
+		if (kits.getKits().get(damagee.getUniqueId()).equals("Fisherman")) {
 			return;
 		}
 
-		if (kits.get(damager.getUniqueId()).equals("Fisherman")) {
+		if (kits.getKits().get(damager.getUniqueId()).equals("Fisherman")) {
 			return;
 		}
 
@@ -64,14 +66,16 @@ public class Fisherman implements Listener {
 
 		if (event.getState().equals(PlayerFishEvent.State.CAUGHT_FISH)) {
 			event.setCancelled(true);
-		} else if (kits.get(player.getUniqueId()).equals("Fisherman")
+		} else if (kits.getKits().get(player.getUniqueId()).equals("Fisherman")
 				&& event.getState().equals(PlayerFishEvent.State.CAUGHT_ENTITY)
 				&& event.getCaught().getType().equals(EntityType.PLAYER)) {
 			Player caught = (Player) event.getCaught();
-			caught.teleport(new Location(caught.getWorld(),
-					(player.getLocation().getX() + caught.getLocation().getX()) / 2,
-					(player.getLocation().getY() + caught.getLocation().getY()) / 2,
-					(player.getLocation().getZ() + caught.getLocation().getZ()) / 2));
+			caught.teleport(
+					new Location(caught.getWorld(),
+							(player.getLocation().getX() + caught.getLocation().getX()) / 2,
+							(player.getLocation().getY() + caught.getLocation().getY()) / 2,
+							(player.getLocation().getZ() + caught.getLocation().getZ()) / 2),
+					TeleportCause.UNKNOWN);
 			player.sendMessage("§bFishing Success!");
 			player.playSound(player.getLocation(), Sound.CLICK, 1, 1);
 		}

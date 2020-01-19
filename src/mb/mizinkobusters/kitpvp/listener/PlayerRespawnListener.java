@@ -1,7 +1,5 @@
 package mb.mizinkobusters.kitpvp.listener;
 
-import java.util.HashMap;
-import java.util.UUID;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -19,17 +17,21 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import mb.mizinkobusters.kitpvp.KitPvP;
+import mb.mizinkobusters.kitpvp.gui.DistributeKits;
 
 public class PlayerRespawnListener implements Listener {
 
 	JavaPlugin plugin;
+	private DistributeKits kits;
 	ItemMeta meta;
 
 	public PlayerRespawnListener(KitPvP plugin) {
 		this.plugin = plugin;
 	}
 
-	HashMap<UUID, String> kits = new PlayerKillListener((KitPvP) plugin).kits;
+	public PlayerRespawnListener(DistributeKits kits) {
+		this.kits = kits;
+	}
 
 	String prefix = "§7[§dKitPvP§7] ";
 	String respawn = "respawn";
@@ -62,7 +64,7 @@ public class PlayerRespawnListener implements Listener {
 					&& item.getItemMeta().getDisplayName().equals("§c§lクリックでリスポーン")) {
 				if (player.getItemInHand().getType().equals(Material.BONE))
 					player.getItemInHand().setAmount(0);
-				if (kits.containsKey(player.getUniqueId())) {
+				if (kits.getKits().containsKey(player.getUniqueId())) {
 					player.setMetadata(respawn, new FixedMetadataValue(plugin, player));
 					player.sendMessage(prefix + "§a5秒後§eにリスポーンします");
 					player.sendMessage(prefix + "§cその場から動かないでください...");
@@ -126,7 +128,7 @@ public class PlayerRespawnListener implements Listener {
 
 		if (player.getWorld().getName().equals("kitpvp") && player.hasMetadata(respawn)
 				|| player.hasMetadata(fast)) {
-			if (cause.equals(TeleportCause.ENDER_PEARL)) {
+			if (cause.equals(TeleportCause.ENDER_PEARL) || cause.equals(TeleportCause.UNKNOWN)) {
 				player.removeMetadata(respawn, plugin);
 				player.removeMetadata(fast, plugin);
 				player.sendMessage(prefix + "§cテレポートしたためリスポーンを中断しました");

@@ -1,8 +1,6 @@
 package mb.mizinkobusters.kitpvp.kit;
 
-import java.util.HashMap;
 import java.util.Random;
-import java.util.UUID;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
@@ -16,7 +14,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import mb.mizinkobusters.kitpvp.KitPvP;
-import mb.mizinkobusters.kitpvp.listener.PlayerKillListener;
+import mb.mizinkobusters.kitpvp.gui.DistributeKits;
 
 public class Blizzard implements Listener {
 
@@ -27,12 +25,15 @@ public class Blizzard implements Listener {
 	 */
 
 	JavaPlugin plugin;
+	DistributeKits kits;
 
 	public Blizzard(KitPvP plugin) {
 		this.plugin = plugin;
 	}
 
-	HashMap<UUID, String> kits = new PlayerKillListener((KitPvP) plugin).kits;
+	public Blizzard(DistributeKits kits) {
+		this.kits = kits;
+	}
 
 	@EventHandler
 	public void onKill(PlayerDeathEvent event) {
@@ -52,11 +53,11 @@ public class Blizzard implements Listener {
 		Random r = new Random();
 		int i = r.nextInt(7);
 
-		if (kits.get(damagee.getUniqueId()).equals("Blizzard")) {
+		if (kits.getKits().get(damagee.getUniqueId()).equals("Blizzard")) {
 			return;
 		}
 
-		if (kits.get(damager.getUniqueId()).equals("Blizzard") && damager.hasMetadata("combat")) {
+		if (kits.getKits().get(damager.getUniqueId()).equals("Blizzard") && !event.isCancelled()) {
 
 			switch (i) {
 				case 0:

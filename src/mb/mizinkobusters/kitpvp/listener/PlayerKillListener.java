@@ -1,7 +1,5 @@
 package mb.mizinkobusters.kitpvp.listener;
 
-import java.util.HashMap;
-import java.util.UUID;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
@@ -14,16 +12,20 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import mb.mizinkobusters.kitpvp.KitPvP;
+import mb.mizinkobusters.kitpvp.gui.DistributeKits;
 
 public class PlayerKillListener implements Listener {
 
 	JavaPlugin plugin;
+	DistributeKits kits;
 
 	public PlayerKillListener(KitPvP plugin) {
 		this.plugin = plugin;
 	}
 
-	public HashMap<UUID, String> kits = new HashMap<UUID, String>();
+	public PlayerKillListener(DistributeKits kits) {
+		this.kits = kits;
+	}
 
 	String prefix = "§7[§dKitPvP§7] ";
 
@@ -40,11 +42,11 @@ public class PlayerKillListener implements Listener {
 				player.sendMessage(
 						prefix + "§e" + killer.getName() + " §aの残りHPは§d " + killer.getHealth());
 				player.sendMessage(prefix + "§e" + killer.getName() + " §aの使用Kitは§d "
-						+ kits.getOrDefault(killer.getUniqueId(), null));
+						+ kits.getKits().getOrDefault(killer.getUniqueId(), null));
 
 				killer.sendMessage(prefix + "§c" + player.getName() + " §aをキル");
 				killer.sendMessage(prefix + "§e" + player.getName() + " §aの使用Kitは§d "
-						+ kits.getOrDefault(player.getUniqueId(), null));
+						+ kits.getKits().getOrDefault(player.getUniqueId(), null));
 
 				killer.setHealth(killer.getMaxHealth());
 			} else if (player.getKiller() != null
@@ -55,17 +57,16 @@ public class PlayerKillListener implements Listener {
 				player.sendMessage(
 						prefix + "§e" + killer.getName() + " §aの残りHPは§d " + killer.getHealth());
 				player.sendMessage(prefix + "§e" + killer.getName() + " §aの使用Kitは§d "
-						+ kits.getOrDefault(killer.getUniqueId(), null));
+						+ kits.getKits().getOrDefault(killer.getUniqueId(), null));
 
 				killer.sendMessage(prefix + "§c" + player.getName() + " §aをキル");
 				killer.sendMessage(prefix + "§e" + player.getName() + " §aの使用Kitは§d "
-						+ kits.getOrDefault(player.getUniqueId(), null));
+						+ kits.getKits().getOrDefault(player.getUniqueId(), null));
 
 				killer.setHealth(killer.getMaxHealth());
 			}
 
-			kits.getOrDefault(player.getUniqueId(), null);
-			player.removeMetadata("combat", plugin);
+			kits.getKits().getOrDefault(player.getUniqueId(), null);
 
 			player.spigot().respawn();
 
