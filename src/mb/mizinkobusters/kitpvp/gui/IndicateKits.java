@@ -1130,7 +1130,7 @@ public class IndicateKits implements Listener {
 		ItemStack potion2 = new ItemStack(Material.POTION, 2, (short) 16388);
 		ItemStack potion3 = new ItemStack(Material.POTION, 2, (short) 16389);
 
-		ItemStack ability1 = new ItemStack(Material.BREWING_STAND);
+		ItemStack ability1 = new ItemStack(Material.BREWING_STAND_ITEM);
 
 		ItemStack helmet = new ItemStack(Material.CHAINMAIL_HELMET);
 		ItemStack chestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
