@@ -32,7 +32,6 @@ public class PlayerRespawnListener implements Listener {
 
 	String prefix = "§7[§dKitPvP§7] ";
 	String respawn = "respawn";
-	String fast = "fastrespawn";
 
 	public void bone(Player player) {
 		PlayerInventory inv = player.getInventory();
@@ -50,6 +49,7 @@ public class PlayerRespawnListener implements Listener {
 		Player player = event.getPlayer();
 		ItemStack item = event.getItem();
 
+
 		if (item == null)
 			return;
 
@@ -59,8 +59,16 @@ public class PlayerRespawnListener implements Listener {
 		if (item.getItemMeta().getDisplayName() != null || item.hasItemMeta()) {
 			if (player.getWorld().getName().equals("kitpvp")
 					&& item.getItemMeta().getDisplayName().equals("§c§lクリックでリスポーン")) {
-				if (player.getItemInHand().getType().equals(Material.BONE))
-					player.getItemInHand().setAmount(0);
+
+				int amount = player.getInventory().getItemInHand().getAmount();
+
+				if (amount > 1)
+					player.getInventory().getItemInHand().setAmount(amount - 1);
+				else
+					player.getInventory().remove(Material.BONE);
+				player.updateInventory();
+
+
 				if (kits.getKits().containsKey(player.getUniqueId())) {
 					player.setMetadata(respawn, new FixedMetadataValue(plugin, player));
 					player.sendMessage(prefix + "§a5秒後§eにリスポーンします");
@@ -74,26 +82,10 @@ public class PlayerRespawnListener implements Listener {
 										new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0));
 								player.sendMessage(prefix + "§aリスポーンしました!");
 								player.removeMetadata(respawn, plugin);
+								kits.getKits().remove(player.getUniqueId());
 							}
 						}
 					}.runTaskLater(plugin, 100);
-
-				} else {
-					player.setMetadata(fast, new FixedMetadataValue(plugin, player));
-					player.sendMessage(prefix + "§a1秒後§eにリスポーンします");
-					player.sendMessage(prefix + "§cその場から動かないでください...");
-
-					new BukkitRunnable() {
-						@Override
-						public void run() {
-							if (player.hasMetadata(fast)) {
-								player.teleport(
-										new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0));
-								player.removeMetadata(fast, plugin);
-								player.sendMessage(prefix + "§aリスポーンしました!");
-							}
-						}
-					}.runTaskLater(plugin, 20);
 				}
 			}
 		}
@@ -105,13 +97,11 @@ public class PlayerRespawnListener implements Listener {
 		Location from = event.getFrom();
 		Location to = event.getTo();
 
-		if (player.getWorld().getName().equals("kitpvp") && player.hasMetadata(respawn)
-				|| player.hasMetadata(fast)) {
+		if (player.getWorld().getName().equals("kitpvp") && player.hasMetadata(respawn)) {
 			// X, Y, Z座標のいずれかで移動が確認されたらリスポーンをキャンセル
-			if (Math.abs(from.getX() - to.getX()) >= 1 || Math.abs(from.getY() - to.getY()) >= 1
-					|| Math.abs(from.getZ() - to.getZ()) >= 1) {
+			if (Math.abs(to.getX() - from.getX()) >= 1 || Math.abs(to.getY() - from.getY()) >= 1
+					|| Math.abs(to.getZ() - from.getZ()) >= 1) {
 				player.removeMetadata(respawn, plugin);
-				player.removeMetadata(fast, plugin);
 				player.sendMessage(prefix + "§c移動したためリスポーンを中断しました");
 				bone(player);
 			}
@@ -123,11 +113,9 @@ public class PlayerRespawnListener implements Listener {
 		Player player = event.getPlayer();
 		TeleportCause cause = event.getCause();
 
-		if (player.getWorld().getName().equals("kitpvp") && player.hasMetadata(respawn)
-				|| player.hasMetadata(fast)) {
+		if (player.getWorld().getName().equals("kitpvp") && player.hasMetadata(respawn)) {
 			if (cause.equals(TeleportCause.ENDER_PEARL) || cause.equals(TeleportCause.UNKNOWN)) {
 				player.removeMetadata(respawn, plugin);
-				player.removeMetadata(fast, plugin);
 				player.sendMessage(prefix + "§cテレポートしたためリスポーンを中断しました");
 				bone(player);
 			}
@@ -140,7 +128,5 @@ public class PlayerRespawnListener implements Listener {
 
 		if (player.hasMetadata(respawn))
 			player.removeMetadata(respawn, plugin);
-		if (player.hasMetadata(fast))
-			player.removeMetadata(fast, plugin);
 	}
 }

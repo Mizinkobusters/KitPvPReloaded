@@ -9,6 +9,7 @@ import org.bukkit.scoreboard.Team;
 import mb.mizinkobusters.kitpvp.command.Accept;
 import mb.mizinkobusters.kitpvp.command.Disband;
 import mb.mizinkobusters.kitpvp.command.Request;
+import mb.mizinkobusters.kitpvp.gui.DistributeKits;
 import mb.mizinkobusters.kitpvp.gui.IndicateKits;
 import mb.mizinkobusters.kitpvp.gui.PurchaseGUI;
 import mb.mizinkobusters.kitpvp.gui.SelectGUI;
@@ -87,10 +88,10 @@ public class KitPvP extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(new PlayerLoggingListener(this, select), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerRespawnListener(this, select), this);
 
-		Bukkit.getPluginManager().registerEvents(select, this);
+		Bukkit.getPluginManager().registerEvents(new DistributeKits(this), this);
 		Bukkit.getPluginManager().registerEvents(new IndicateKits(this), this);
 		Bukkit.getPluginManager().registerEvents(new PurchaseGUI(this), this);
-		Bukkit.getPluginManager().registerEvents(new SelectGUI(this), this);
+		Bukkit.getPluginManager().registerEvents(select, this);
 
 		// Kit 登録
 		Bukkit.getPluginManager().registerEvents(new Archer(this, select), this);

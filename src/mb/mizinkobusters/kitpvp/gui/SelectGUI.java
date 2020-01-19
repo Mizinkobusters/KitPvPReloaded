@@ -259,8 +259,6 @@ public class SelectGUI implements Listener {
 					clearInv(player);
 					distribute.archer(player);
 					kits.put(player.getUniqueId(), "Archer");
-					player.sendMessage(
-							"現在セットされている値は" + kits.getOrDefault(player.getUniqueId(), null));
 					player.sendMessage(prefix + "§bArcher Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bArcher Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -271,6 +269,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.astronaut(player);
+					kits.put(player.getUniqueId(), "Astronaut");
 					player.sendMessage(prefix + "§bAstronaut Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bAstronaut Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -282,6 +281,7 @@ public class SelectGUI implements Listener {
 					if (player.hasPermission("mizinkopvp.kit.purchase.attacker")) {
 						clearInv(player);
 						distribute.attacker(player);
+						kits.put(player.getUniqueId(), "Attacker");
 						player.sendMessage(prefix + "§cAttacker Kit を選択しました!");
 					} else {
 						player.closeInventory();
@@ -297,6 +297,7 @@ public class SelectGUI implements Listener {
 					if (player.hasPermission("mizinkopvp.kit.purchase.berserker")) {
 						clearInv(player);
 						distribute.berserker(player);
+						kits.put(player.getUniqueId(), "Berserker");
 						player.sendMessage(prefix + "§cBerserker Kit を選択しました!");
 					} else {
 						player.closeInventory();
@@ -312,6 +313,7 @@ public class SelectGUI implements Listener {
 					if (player.hasPermission("mizinkopvp.kit.purchase.blizzard")) {
 						clearInv(player);
 						distribute.blizzard(player);
+						kits.put(player.getUniqueId(), "Blizzard");
 						player.sendMessage(prefix + "§cBlizzard Kit を選択しました!");
 					} else {
 						player.closeInventory();
@@ -326,8 +328,9 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.boxer(player);
+					kits.put(player.getUniqueId(), "Boxer");
 					player.sendMessage(prefix + "§bBoxer Kit を選択しました!");
-				} else if (item.getItemMeta().getDisplayName().equals("§bboxer Kitを選択する")
+				} else if (item.getItemMeta().getDisplayName().equals("§bBoxer Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
 					player.openInventory(indicate.boxerGUI());
 				}
@@ -336,6 +339,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.comet(player);
+					kits.put(player.getUniqueId(), "Comet");
 					player.sendMessage(prefix + "§bComet Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bComet Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -347,6 +351,7 @@ public class SelectGUI implements Listener {
 					if (player.hasPermission("mizinkopvp.kit.purchase.counter")) {
 						clearInv(player);
 						distribute.counter(player);
+						kits.put(player.getUniqueId(), "Counter");
 						player.sendMessage(prefix + "§cCounter Kit を選択しました!");
 					} else {
 						player.closeInventory();
@@ -362,6 +367,7 @@ public class SelectGUI implements Listener {
 					if (player.hasPermission("mizinkopvp.kit.purchase.enderman")) {
 						clearInv(player);
 						distribute.enderman(player);
+						kits.put(player.getUniqueId(), "Enderman");
 						player.sendMessage(prefix + "§cEnderman Kit を選択しました!");
 						player.sendMessage(prefix + "§dこのKitを使ってガラスの壁に登らないでください");
 					} else {
@@ -377,6 +383,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.fisherman(player);
+					kits.put(player.getUniqueId(), "Fisherman");
 					player.sendMessage(prefix + "§bFisherman Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bFisherman Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -387,6 +394,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.flame(player);
+					kits.put(player.getUniqueId(), "Flame");
 					player.sendMessage(prefix + "§bFlame Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bFlame Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -398,6 +406,7 @@ public class SelectGUI implements Listener {
 					if (player.hasPermission("mizinkopvp.kit.purchase.healthboost")) {
 						clearInv(player);
 						distribute.healthboost(player);
+						kits.put(player.getUniqueId(), "HealthBoost");
 						player.sendMessage(prefix + "§cHealthBoost Kit を選択しました!");
 					} else {
 						player.closeInventory();
@@ -412,6 +421,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.iron(player);
+					kits.put(player.getUniqueId(), "Iron");
 					player.sendMessage(prefix + "§bIron Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bIron Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -422,6 +432,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.lightning(player);
+					kits.put(player.getUniqueId(), "Lightning");
 					player.sendMessage(prefix + "§bLightning Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bLightning Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -433,6 +444,7 @@ public class SelectGUI implements Listener {
 					if (player.hasPermission("mizinkopvp.kit.purchase.madness")) {
 						clearInv(player);
 						distribute.madness(player);
+						kits.put(player.getUniqueId(), "Madness");
 						player.sendMessage(prefix + "§cMadness Kit を選択しました!");
 					} else {
 						player.closeInventory();
@@ -447,6 +459,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.miner(player);
+					kits.put(player.getUniqueId(), "Miner");
 					player.sendMessage(prefix + "§bMiner Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bMiner Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -457,6 +470,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.potionhandler(player);
+					kits.put(player.getUniqueId(), "PotionHandler");
 					player.sendMessage(prefix + "§bPotionHandler Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bPotionHandler Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -468,6 +482,7 @@ public class SelectGUI implements Listener {
 					if (player.hasPermission("mizinkopvp.kit.purchase.rabbit")) {
 						clearInv(player);
 						distribute.rabbit(player);
+						kits.put(player.getUniqueId(), "Rabbit");
 						player.sendMessage(prefix + "§cRabbit Kit を選択しました!");
 					} else {
 						player.closeInventory();
@@ -482,6 +497,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.recover(player);
+					kits.put(player.getUniqueId(), "Recover");
 					player.sendMessage(prefix + "§bRecover Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bRecover Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -493,6 +509,7 @@ public class SelectGUI implements Listener {
 					if (player.hasPermission("mizinkopvp.kit.purchase.revival")) {
 						clearInv(player);
 						distribute.revival(player);
+						kits.put(player.getUniqueId(), "Revival");
 						player.sendMessage(prefix + "§cRevival Kit を選択しました!");
 					} else {
 						player.closeInventory();
@@ -507,6 +524,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.slasher(player);
+					kits.put(player.getUniqueId(), "Slasher");
 					player.sendMessage(prefix + "§bSlasher Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bSlasher Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -518,6 +536,7 @@ public class SelectGUI implements Listener {
 					if (player.hasPermission("mizinkopvp.kit.purchase.sniper")) {
 						clearInv(player);
 						distribute.sniper(player);
+						kits.put(player.getUniqueId(), "Sniper");
 						player.sendMessage(prefix + "§cSniper Kit を選択しました!");
 					} else {
 						player.closeInventory();
@@ -532,6 +551,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.standard(player);
+					kits.put(player.getUniqueId(), "Standard");
 					player.sendMessage(prefix + "§bStandard Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bStandard Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -542,6 +562,7 @@ public class SelectGUI implements Listener {
 						&& action.equals(InventoryAction.PICKUP_ALL)) {
 					clearInv(player);
 					distribute.tank(player);
+					kits.put(player.getUniqueId(), "Tank");
 					player.sendMessage(prefix + "§bTank Kit を選択しました!");
 				} else if (item.getItemMeta().getDisplayName().equals("§bTank Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
@@ -553,6 +574,7 @@ public class SelectGUI implements Listener {
 					if (player.hasPermission("mizinkopvp.kit.vote.tapiocamilktea")) {
 						clearInv(player);
 						distribute.tapiocamilktea(player);
+						kits.put(player.getUniqueId(), "TapiocaMilkTea");
 						player.sendMessage(prefix + "§dTapiocaMilkTea Kit を選択しました!");
 					} else {
 						player.sendMessage(prefix + "§cこのKitはJMSで投票をすると使用可能です!");

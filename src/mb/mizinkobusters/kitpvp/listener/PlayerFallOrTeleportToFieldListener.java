@@ -46,8 +46,6 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 				event.setCancelled(true);
 				player.teleport(new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0));
 				player.sendMessage(prefix + "§cKitを選択してください");
-				player.sendMessage(
-						"現在セットされている値は" + kits.getKits().getOrDefault(player.getUniqueId(), null));
 			}
 		}
 	}
@@ -56,6 +54,8 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 	public void onPlate(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		Action action = event.getAction();
+		float pitch = player.getLocation().getPitch();
+		float yaw = player.getLocation().getYaw();
 
 		if (player.getWorld().getName().equals("kitpvp") && action.equals(Action.PHYSICAL)) {
 			if (Bukkit.getWorld(player.getWorld().getName())
@@ -63,14 +63,13 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 							event.getClickedBlock().getZ())
 					.getType().equals(Material.GRASS)) {
 				if (kits.getKits().containsKey(player.getUniqueId())) {
-					player.teleport(new Location(Bukkit.getWorld("kitpvp"), 41.5, 4.0, 54.5),
+					player.teleport(
+							new Location(Bukkit.getWorld("kitpvp"), 41.5, 4.0, 54.5, pitch, yaw),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,
 							3, false, false));
 				} else {
 					player.sendMessage(prefix + "§cKitを選択してください");
-					player.sendMessage("現在セットされている値は"
-							+ kits.getKits().getOrDefault(player.getUniqueId(), null));
 				}
 			}
 
@@ -79,7 +78,8 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 							event.getClickedBlock().getZ())
 					.getType().equals(Material.SANDSTONE)) {
 				if (kits.getKits().containsKey(player.getUniqueId())) {
-					player.teleport(new Location(Bukkit.getWorld("kitpvp"), -63.5, 4.0, 11.5),
+					player.teleport(
+							new Location(Bukkit.getWorld("kitpvp"), -63.5, 4.0, 11.5, pitch, yaw),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,
 							3, false, false));
@@ -93,7 +93,8 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 							event.getClickedBlock().getZ())
 					.getType().equals(Material.NETHERRACK)) {
 				if (kits.getKits().containsKey(player.getUniqueId())) {
-					player.teleport(new Location(Bukkit.getWorld("kitpvp"), -11.5, 6.0, -53.5),
+					player.teleport(
+							new Location(Bukkit.getWorld("kitpvp"), -11.5, 6.0, -53.5, pitch, yaw),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,
 							3, false, false));
@@ -107,7 +108,8 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 							event.getClickedBlock().getZ())
 					.getType().equals(Material.MYCEL)) {
 				if (kits.getKits().containsKey(player.getUniqueId())) {
-					player.teleport(new Location(Bukkit.getWorld("kitpvp"), 68.5, 11.0, -14.5),
+					player.teleport(
+							new Location(Bukkit.getWorld("kitpvp"), 68.5, 11.0, -14.5, pitch, yaw),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,
 							3, false, false));
