@@ -30,16 +30,17 @@ public class PlayerLoggingListener implements Listener {
 		PlayerInventory inv = player.getInventory();
 
 		if (kits.getKits().containsKey(player.getUniqueId())) {
-			kits.getKits().put(player.getUniqueId(), null);
 			player.sendMessage(prefix + "§c前回ログアウトした場所が戦場だったので死亡扱いとなりました");
+			kits.getKits().put(player.getUniqueId(), null);
 		}
 
 		inv.clear();
-		for (ItemStack armor : inv.getArmorContents())
-			armor.setType(Material.AIR);
-		player.setMaxHealth(20.0);
-		player.setHealth(20.0);
-		for (PotionEffect effect : player.getActivePotionEffects())
+		inv.setHelmet(new ItemStack(Material.AIR));
+		inv.setChestplate(new ItemStack(Material.AIR));
+		inv.setLeggings(new ItemStack(Material.AIR));
+		inv.setBoots(new ItemStack(Material.AIR));
+		for (PotionEffect effect : player.getActivePotionEffects()) {
 			player.removePotionEffect(effect.getType());
+		}
 	}
 }

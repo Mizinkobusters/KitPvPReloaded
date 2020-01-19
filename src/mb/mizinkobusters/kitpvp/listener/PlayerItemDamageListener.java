@@ -24,11 +24,16 @@ public class PlayerItemDamageListener implements Listener {
 		Player player = event.getPlayer();
 		ItemStack item = event.getItem();
 
-		if (player.getWorld().getName().equals("kitpvp")) {
-			if (item != null && item.getType().equals(Material.FISHING_ROD)) {
-				event.setCancelled(true);
-				player.updateInventory();
-			}
+		if (item == null)
+			return;
+
+		if (!player.getWorld().getName().equals("kitpvp"))
+			return;
+
+
+		if (!item.getType().equals(Material.FISHING_ROD)) {
+			event.setCancelled(true);
+			player.updateInventory();
 		}
 	}
 }

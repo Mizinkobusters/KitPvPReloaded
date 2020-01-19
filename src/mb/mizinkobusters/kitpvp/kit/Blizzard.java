@@ -46,13 +46,19 @@ public class Blizzard implements Listener {
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent event) {
 		Player damagee = (Player) event.getEntity();
-		Player damager = (Player) event.getDamager();
+		Player damager = null;
 		Random r = new Random();
 		int i = r.nextInt(7);
 
 		if (kits.getKits().get(damagee.getUniqueId()).equals("Blizzard")) {
 			return;
 		}
+
+		if (damager instanceof Player)
+			damager = (Player) damager;
+
+		if (damager == null)
+			return;
 
 		if (kits.getKits().get(damager.getUniqueId()).equals("Blizzard") && !event.isCancelled()) {
 

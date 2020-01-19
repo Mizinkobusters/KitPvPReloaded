@@ -43,13 +43,19 @@ public class Lightning implements Listener {
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent event) {
 		Player damagee = (Player) event.getEntity();
-		Player damager = (Player) event.getDamager();
+		Player damager = null;
 		Random r = new Random();
 		int i = r.nextInt(6);
 
 		if (kits.getKits().get(damagee.getUniqueId()).equals("Lightning")) {
 			return;
 		}
+
+		if (damager instanceof Player)
+			damager = (Player) damager;
+
+		if (damager == null)
+			return;
 
 		if (kits.getKits().get(damager.getUniqueId()).equals("Lightning") && !event.isCancelled()
 				&& i == 0) {

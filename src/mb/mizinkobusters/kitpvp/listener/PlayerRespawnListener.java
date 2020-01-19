@@ -56,38 +56,40 @@ public class PlayerRespawnListener implements Listener {
 		if (item.getItemMeta() == null || !item.hasItemMeta())
 			return;
 
-		if (item.getItemMeta().getDisplayName() != null || item.hasItemMeta()) {
-			if (player.getWorld().getName().equals("kitpvp")
-					&& item.getItemMeta().getDisplayName().equals("§c§lクリックでリスポーン")) {
+		if (!player.getWorld().getName().equals("kitpvp"))
+			return;
 
-				int amount = player.getInventory().getItemInHand().getAmount();
+		if (item.getItemMeta().getDisplayName() == null || !item.getItemMeta().hasDisplayName())
+			return;
 
-				if (amount > 1)
-					player.getInventory().getItemInHand().setAmount(amount - 1);
-				else
-					player.getInventory().remove(Material.BONE);
-				player.updateInventory();
+		if (item.getItemMeta().getDisplayName().equals("§c§lクリックでリスポーン")) {
+			int amount = player.getInventory().getItemInHand().getAmount();
+
+			if (amount > 1)
+				player.getInventory().getItemInHand().setAmount(amount - 1);
+			else
+				player.getInventory().remove(Material.BONE);
+			player.updateInventory();
 
 
-				if (kits.getKits().containsKey(player.getUniqueId())) {
-					player.setMetadata(respawn, new FixedMetadataValue(plugin, player));
-					player.sendMessage(prefix + "§a5秒後§eにリスポーンします");
-					player.sendMessage(prefix + "§cその場から動かないでください...");
+			if (!kits.getKits().containsKey(player.getUniqueId()))
+				return;
 
-					new BukkitRunnable() {
-						@Override
-						public void run() {
-							if (player.hasMetadata(respawn)) {
-								player.teleport(
-										new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0));
-								player.sendMessage(prefix + "§aリスポーンしました!");
-								player.removeMetadata(respawn, plugin);
-								kits.getKits().remove(player.getUniqueId());
-							}
-						}
-					}.runTaskLater(plugin, 100);
+			player.setMetadata(respawn, new FixedMetadataValue(plugin, player));
+			player.sendMessage(prefix + "§a5秒後§eにリスポーンします");
+			player.sendMessage(prefix + "§cその場から動かないでください...");
+
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					if (player.hasMetadata(respawn)) {
+						player.teleport(new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0));
+						player.sendMessage(prefix + "§aリスポーンしました!");
+						player.removeMetadata(respawn, plugin);
+						kits.getKits().remove(player.getUniqueId());
+					}
 				}
-			}
+			}.runTaskLater(plugin, 100);
 		}
 	}
 
@@ -97,14 +99,18 @@ public class PlayerRespawnListener implements Listener {
 		Location from = event.getFrom();
 		Location to = event.getTo();
 
-		if (player.getWorld().getName().equals("kitpvp") && player.hasMetadata(respawn)) {
-			// X, Y, Z座標のいずれかで移動が確認されたらリスポーンをキャンセル
-			if (Math.abs(to.getX() - from.getX()) >= 1 || Math.abs(to.getY() - from.getY()) >= 1
-					|| Math.abs(to.getZ() - from.getZ()) >= 1) {
-				player.removeMetadata(respawn, plugin);
-				player.sendMessage(prefix + "§c移動したためリスポーンを中断しました");
-				bone(player);
-			}
+		if (!player.getWorld().getName().equals("kitpvp"))
+			return;
+
+		if (!player.hasMetadata(respawn))
+			return;
+
+		// X, Y, Z座標のいずれかで移動が確認されたらリスポーンをキャンセル
+		if (Math.abs(to.getX() - from.getX()) >= 1 || Math.abs(to.getY() - from.getY()) >= 1
+				|| Math.abs(to.getZ() - from.getZ()) >= 1) {
+			player.removeMetadata(respawn, plugin);
+			player.sendMessage(prefix + "§c移動したためリスポーンを中断しました");
+			bone(player);
 		}
 	}
 
@@ -113,12 +119,16 @@ public class PlayerRespawnListener implements Listener {
 		Player player = event.getPlayer();
 		TeleportCause cause = event.getCause();
 
-		if (player.getWorld().getName().equals("kitpvp") && player.hasMetadata(respawn)) {
-			if (cause.equals(TeleportCause.ENDER_PEARL) || cause.equals(TeleportCause.UNKNOWN)) {
-				player.removeMetadata(respawn, plugin);
-				player.sendMessage(prefix + "§cテレポートしたためリスポーンを中断しました");
-				bone(player);
-			}
+		if (!player.getWorld().getName().equals("kitpvp"))
+			return;
+
+		if (!player.hasMetadata(respawn))
+			return;
+
+		if (cause.equals(TeleportCause.ENDER_PEARL) || cause.equals(TeleportCause.UNKNOWN)) {
+			player.removeMetadata(respawn, plugin);
+			player.sendMessage(prefix + "§cテレポートしたためリスポーンを中断しました");
+			bone(player);
 		}
 	}
 

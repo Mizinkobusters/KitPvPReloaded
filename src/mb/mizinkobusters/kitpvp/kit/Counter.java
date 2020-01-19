@@ -46,16 +46,22 @@ public class Counter implements Listener {
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent event) {
 		Player damagee = (Player) event.getEntity();
-		Player damager = (Player) event.getDamager();
+		Player damager = null;
 
 		DamageCause cause = event.getCause();
 		double d = event.getDamage();
 		Random r = new Random();
 		int i = r.nextInt(5);
 
+		if (damager instanceof Player)
+			damager = (Player) damager;
+
+		if (damager == null)
+			return;
+
 		if (cause.equals(DamageCause.ENTITY_ATTACK) && damager != null) {
 			if (kits.getKits().get(damagee.getUniqueId()).equals("Counter")
-					&& damagee.hasMetadata("combat")) {
+					&& !event.isCancelled()) {
 
 				switch (i) {
 					case 1:
@@ -74,7 +80,7 @@ public class Counter implements Listener {
 			Arrow arrow = (Arrow) damager;
 			Player shooter = (Player) arrow.getShooter();
 			if (kits.getKits().get(shooter.getUniqueId()).equals("Counter")
-					&& shooter.hasMetadata("combat")) {
+					&& !event.isCancelled()) {
 
 				switch (i) {
 					case 1:

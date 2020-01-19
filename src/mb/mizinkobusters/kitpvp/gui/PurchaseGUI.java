@@ -39,11 +39,14 @@ public class PurchaseGUI implements Listener {
 		if (item.getItemMeta() == null || !item.hasItemMeta())
 			return;
 
-		if (item.getItemMeta().getDisplayName() != null || item.hasItemMeta())
-			if (player.getWorld().getName().equals("kitpvp")
-					&& item.getItemMeta().getDisplayName().equals("§d§lKitを購入する")) {
-				player.openInventory(buygui());
-			}
+		if (!player.getWorld().getName().equals("kitpvp"))
+			return;
+
+		if (item.getItemMeta().getDisplayName() == null || !item.getItemMeta().hasDisplayName())
+			return;
+
+		if (item.getItemMeta().getDisplayName().equals("§e§lKitを購入する"))
+			player.openInventory(buygui());
 	}
 
 	/*

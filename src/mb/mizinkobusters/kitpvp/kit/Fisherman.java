@@ -46,11 +46,17 @@ public class Fisherman implements Listener {
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent event) {
 		Player damagee = (Player) event.getEntity();
-		Player damager = (Player) event.getDamager();
+		Player damager = null;
 
 		if (kits.getKits().get(damagee.getUniqueId()).equals("Fisherman")) {
 			return;
 		}
+
+		if (damager instanceof Player)
+			damager = (Player) damager;
+
+		if (damager == null)
+			return;
 
 		if (kits.getKits().get(damager.getUniqueId()).equals("Fisherman")) {
 			return;
