@@ -268,7 +268,7 @@ public class DistributeKits implements Listener {
 		ItemStack sword = new ItemStack(Material.GOLD_SWORD);
 		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
 
-		inv.addItem(new ItemStack(Material.IRON_SWORD));
+		inv.addItem(sword);
 		inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 2));
 		bone(player);
 
@@ -313,7 +313,7 @@ public class DistributeKits implements Listener {
 		inv.addItem(new ItemStack(Material.IRON_SWORD));
 		inv.addItem(new ItemStack(Material.POTION, 2, (short) 16396)); // 負傷
 		inv.addItem(new ItemStack(Material.POTION, 2, (short) 16388)); // 毒
-		inv.addItem(new ItemStack(Material.POTION, 2, (short) 16399)); // 治癒
+		inv.addItem(new ItemStack(Material.POTION, 2, (short) 16389)); // 治癒
 		bone(player);
 
 		inv.setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));

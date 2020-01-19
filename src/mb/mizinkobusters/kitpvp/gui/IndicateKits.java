@@ -30,14 +30,13 @@ public class IndicateKits implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		Inventory inv = event.getInventory();
 
-		if (player.getWorld().getName().equals("kitpvp") && inv.getName().contains("Kit")
-				&& inv.getSize() == 3) {
+		if (player.getWorld().getName().equals("kitpvp") && inv.getName().endsWith("Kit)")) {
 			event.setCancelled(true);
 		}
 	}
 
 	public Inventory archerGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lArcher Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lArcher Kit§7(一般Kit)");
 
 		ItemStack bow = new ItemStack(Material.BOW);
 		bow.addEnchantment(Enchantment.ARROW_INFINITE, 1);
@@ -107,7 +106,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory astronautGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lAstronaut Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lAstronaut Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
@@ -183,7 +182,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory attackerGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lAttacker Kit§7(購入Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lAttacker Kit§7(購入Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
@@ -252,7 +251,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory berserkerGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lBerserker Kit§7(購入Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lBerserker Kit§7(購入Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
@@ -322,7 +321,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory blizzardGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lBlizzard Kit§7(購入Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lBlizzard Kit§7(購入Kit)");
 
 		ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
 
@@ -384,7 +383,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory boxerGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lBoxer Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lBoxer Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
 		sword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 5);
@@ -448,7 +447,7 @@ public class IndicateKits implements Listener {
 
 	// TODO 防具に色つける
 	public Inventory cometGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lComet Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lComet Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
@@ -510,7 +509,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory counterGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lCounter Kit§7(購入Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lCounter Kit§7(購入Kit)");
 
 		ItemStack sword = new ItemStack(Material.STONE_SWORD);
 
@@ -536,7 +535,7 @@ public class IndicateKits implements Listener {
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
 		meta.setLore(
-				new ArrayList<String>(Arrays.asList("§71/5の確率で受けるダメージを半分にし", "受けたダメージを相手にも与える")));
+				new ArrayList<String>(Arrays.asList("§71/5の確率で受けるダメージを半分にし", "§7受けたダメージを相手にも与える")));
 		ability1.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
@@ -573,7 +572,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory endermanGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lEnderman Kit§7(購入Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lEnderman Kit§7(購入Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
@@ -643,7 +642,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory fishermanGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lFisherman Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lFisherman Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
@@ -656,7 +655,7 @@ public class IndicateKits implements Listener {
 		ItemStack chestplate = new ItemStack(Material.IRON_CHESTPLATE);
 		ItemStack leggings = new ItemStack(Material.LEATHER_LEGGINGS);
 		ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
-		boots.addEnchantment(Enchantment.WATER_WORKER, 1);
+		boots.addEnchantment(Enchantment.DEPTH_STRIDER, 1);
 
 		meta = sword.getItemMeta();
 		meta.setDisplayName("§7武器");
@@ -690,7 +689,7 @@ public class IndicateKits implements Listener {
 
 		meta = boots.getItemMeta();
 		meta.setDisplayName("§7足装備");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7革のブーツ")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7革のブーツ[水中歩行I]")));
 		boots.setItemMeta(meta);
 
 		gui.setItem(0, helmet);
@@ -708,7 +707,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory flameGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lFlame Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lFlame Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 		sword.addEnchantment(Enchantment.FIRE_ASPECT, 1);
@@ -780,13 +779,12 @@ public class IndicateKits implements Listener {
 		gui.setItem(18, sword);
 		gui.setItem(19, bow);
 		gui.setItem(20, arrow);
-		gui.setItem(21, arrow);
 
 		return gui;
 	}
 
 	public Inventory healthboostGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lHealthBoost Kit§7(購入Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lHealthBoost Kit§7(購入Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
@@ -862,7 +860,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory ironGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lIron Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lIron Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
@@ -871,11 +869,11 @@ public class IndicateKits implements Listener {
 
 		ItemStack ability1 = new ItemStack(Material.IRON_FENCE);
 
-		ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET);
-		ItemStack chestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
+		ItemStack helmet = new ItemStack(Material.IRON_HELMET);
+		ItemStack chestplate = new ItemStack(Material.IRON_CHESTPLATE);
 		chestplate.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 1);
-		ItemStack leggings = new ItemStack(Material.CHAINMAIL_LEGGINGS);
-		ItemStack boots = new ItemStack(Material.DIAMOND_BOOTS);
+		ItemStack leggings = new ItemStack(Material.IRON_LEGGINGS);
+		ItemStack boots = new ItemStack(Material.IRON_BOOTS);
 		boots.addEnchantment(Enchantment.PROTECTION_FALL, 1);
 
 		meta = sword.getItemMeta();
@@ -927,7 +925,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory lightningGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lLightning Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lLightning Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.GOLD_SWORD);
 		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
@@ -944,7 +942,7 @@ public class IndicateKits implements Listener {
 
 		meta = sword.getItemMeta();
 		meta.setDisplayName("§7武器");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7金の剣[ダメージ増加II]")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7金の剣[ダメージ増加I]")));
 		sword.setItemMeta(meta);
 
 		meta = gapple.getItemMeta();
@@ -954,7 +952,7 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§71/6の確率でダメージを与えたプレイヤーの真上に", "雷を落とす")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§71/6の確率でダメージを与えたプレイヤーの真上に", "§7雷を落とす")));
 		ability1.setItemMeta(meta);
 
 		meta = ability2.getItemMeta();
@@ -997,7 +995,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory madnessGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lMadness Kit§7(購入Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lMadness Kit§7(購入Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
@@ -1060,7 +1058,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory minerGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lMiner Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lMiner Kit§7(一般Kit)");
 
 		ItemStack pickaxe = new ItemStack(Material.DIAMOND_PICKAXE);
 
@@ -1124,13 +1122,13 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory potionhandlerGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lPotionHandler Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lPotionHandler Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
 		ItemStack potion1 = new ItemStack(Material.POTION, 2, (short) 16396);
 		ItemStack potion2 = new ItemStack(Material.POTION, 2, (short) 16388);
-		ItemStack potion3 = new ItemStack(Material.POTION, 2, (short) 16399);
+		ItemStack potion3 = new ItemStack(Material.POTION, 2, (short) 16389);
 
 		ItemStack ability1 = new ItemStack(Material.BREWING_STAND);
 
@@ -1200,7 +1198,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory rabbitGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lRabbit Kit§7(購入Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lRabbit Kit§7(購入Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
@@ -1270,7 +1268,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory recoverGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lRecover Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lRecover Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.STONE_SWORD);
 
@@ -1346,7 +1344,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory revivalGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lRevival Kit§7(購入Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lRevival Kit§7(購入Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
@@ -1409,7 +1407,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory slasherGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lSlasher Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lSlasher Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
 		sword.addEnchantment(Enchantment.DAMAGE_ALL, 3);
@@ -1481,7 +1479,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory sniperGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§c§lSniper Kit§7(購入Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lSniper Kit§7(購入Kit)");
 
 		ItemStack bow = new ItemStack(Material.BOW);
 		bow.addEnchantment(Enchantment.ARROW_INFINITE, 1);
@@ -1553,7 +1551,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory standardGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lStandard Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lStandard Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
@@ -1615,7 +1613,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory tankGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§b§lStandard Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lStandard Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.WOOD_SWORD);
 		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
@@ -1678,7 +1676,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory tapiocamilkteaGUI() {
-		Inventory gui = Bukkit.createInventory(null, 3, "§d§lTapiocaMilkTea Kit§7(投票限定Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§d§lTapiocaMilkTea Kit§7(限定Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
