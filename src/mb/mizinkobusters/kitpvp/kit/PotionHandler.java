@@ -1,12 +1,12 @@
 package mb.mizinkobusters.kitpvp.kit;
 
 import org.bukkit.Material;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import mb.mizinkobusters.kitpvp.KitPvP;
@@ -29,12 +29,12 @@ public class PotionHandler implements Listener {
 	}
 
 	@EventHandler
-	public void onKill(PlayerDeathEvent event) {
-		Player player = event.getEntity();
+	public void onKill(PlayerRespawnEvent event) {
+		Player player = event.getPlayer();
+		Player killer = player.getKiller();
 
-		if (player.getKiller() != null && player.getKiller().getType().equals(EntityType.PLAYER)) {
-			Player killer = player.getKiller();
-
+		if (killer != null
+				&& kits.getKits().getOrDefault(killer.getUniqueId(), "").equals("PotionHandler")) {
 			killer.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE));
 			killer.getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 16388));
 		}
@@ -44,18 +44,19 @@ public class PotionHandler implements Listener {
 	public void onDamage(EntityDamageByEntityEvent event) {
 		Player damagee = (Player) event.getEntity();
 		Player damager = null;
-
-		if (kits.getKits().get(damagee.getUniqueId()).equals("PotionHandler")) {
+		if (event.getDamager() instanceof Player)
+			damager = (Player) event.getDamager();
+		else if (event.getDamager() instanceof Arrow) {
+			Arrow arrow = (Arrow) event.getDamager();
+			Player shooter = (Player) arrow.getShooter();
+			damager = shooter;
+		} else
+			return;
+		if (kits.getKits().getOrDefault(damagee.getUniqueId(), "").equals("PotionHandler")) {
 			return;
 		}
 
-		if (damager instanceof Player)
-			damager = (Player) damager;
-
-		if (damager == null)
-			return;
-
-		if (kits.getKits().get(damager.getUniqueId()).equals("PotionHandler")) {
+		if (kits.getKits().getOrDefault(damager.getUniqueId(), "").equals("PotionHandler")) {
 			return;
 		}
 	}

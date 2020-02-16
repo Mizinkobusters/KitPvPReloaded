@@ -3,13 +3,14 @@ package mb.mizinkobusters.kitpvp.kit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,12 +34,12 @@ public class Fisherman implements Listener {
 	}
 
 	@EventHandler
-	public void onKill(PlayerDeathEvent event) {
-		Player player = event.getEntity();
+	public void onKill(PlayerRespawnEvent event) {
+		Player player = event.getPlayer();
+		Player killer = player.getKiller();
 
-		if (player.getKiller() != null && player.getKiller().getType().equals(EntityType.PLAYER)) {
-			Player killer = player.getKiller();
-
+		if (killer != null
+				&& kits.getKits().getOrDefault(killer.getUniqueId(), "").equals("Fisherman")) {
 			killer.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE));
 		}
 	}
@@ -47,23 +48,26 @@ public class Fisherman implements Listener {
 	public void onDamage(EntityDamageByEntityEvent event) {
 		Player damagee = (Player) event.getEntity();
 		Player damager = null;
+		if (event.getDamager() instanceof Player)
+			damager = (Player) event.getDamager();
+		else if (event.getDamager() instanceof Arrow) {
+			Arrow arrow = (Arrow) event.getDamager();
+			Player shooter = (Player) arrow.getShooter();
+			damager = shooter;
+		} else
+			return;
 
-		if (kits.getKits().get(damagee.getUniqueId()).equals("Fisherman")) {
+		if (kits.getKits().getOrDefault(damagee.getUniqueId(), "").equals("Fisherman")) {
 			return;
 		}
 
-		if (damager instanceof Player)
-			damager = (Player) damager;
-
-		if (damager == null)
-			return;
-
-		if (kits.getKits().get(damager.getUniqueId()).equals("Fisherman")) {
+		if (kits.getKits().getOrDefault(damager.getUniqueId(), "").equals("Fisherman")) {
 			return;
 		}
 
 	}
 
+	@EventHandler
 	public void onFish(PlayerFishEvent event) {
 		Player player = event.getPlayer();
 
@@ -73,15 +77,16 @@ public class Fisherman implements Listener {
 				&& event.getState().equals(PlayerFishEvent.State.CAUGHT_ENTITY)
 				&& event.getCaught().getType().equals(EntityType.PLAYER)) {
 			Player caught = (Player) event.getCaught();
-			caught.teleport(
-					new Location(caught.getWorld(),
-							(player.getLocation().getX() + caught.getLocation().getX()) / 2,
-							(player.getLocation().getY() + caught.getLocation().getY()) / 2,
-							(player.getLocation().getZ() + caught.getLocation().getZ()) / 2),
-					TeleportCause.UNKNOWN);
-			player.sendMessage("§bFishing Success!");
-			player.playSound(player.getLocation(), Sound.CLICK, 1, 1);
+			if (caught.hasMetadata("combat")) {
+				caught.teleport(
+						new Location(caught.getWorld(),
+								(player.getLocation().getX() + caught.getLocation().getX()) / 2,
+								(player.getLocation().getY() + caught.getLocation().getY()) / 2,
+								(player.getLocation().getZ() + caught.getLocation().getZ()) / 2),
+						TeleportCause.UNKNOWN);
+				player.sendMessage("§bFishing Success!");
+				player.playSound(player.getLocation(), Sound.CLICK, 1, 1);
+			}
 		}
 	}
-
 }

@@ -1,5 +1,6 @@
 package mb.mizinkobusters.kitpvp.listener;
 
+import java.math.BigDecimal;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
@@ -11,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
+import org.bukkit.util.Vector;
 import mb.mizinkobusters.kitpvp.KitPvP;
 import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 
@@ -36,13 +38,15 @@ public class PlayerKillListener implements Listener {
 					&& player.getKiller().getType().equals(EntityType.PLAYER)) {
 				Player killer = player.getKiller();
 
-				player.sendMessage(
-						prefix + "§e" + killer.getName() + " §aの残りHPは§d " + killer.getHealth());
+				double killerhp = killer.getHealth();
+				BigDecimal bd = new BigDecimal(killerhp);
+
+				player.sendMessage(prefix + "§e" + killer.getName() + " §aの残りHPは§d " + bd);
 				player.sendMessage(prefix + "§e" + killer.getName() + " §aの使用Kitは§d "
 						+ kits.getKits().getOrDefault(killer.getUniqueId(), null));
 
 				killer.sendMessage(prefix + "§c" + player.getName() + " §aをキル");
-				killer.sendMessage(prefix + "§e" + player.getName() + " §aの使用Kitは§d "
+				killer.sendMessage(prefix + "§c" + player.getName() + " §aの使用Kitは§d "
 						+ kits.getKits().getOrDefault(player.getUniqueId(), null));
 
 				killer.setHealth(killer.getMaxHealth());
@@ -51,8 +55,10 @@ public class PlayerKillListener implements Listener {
 				Arrow arrow = (Arrow) player.getKiller();
 				Player killer = (Player) arrow.getShooter();
 
-				player.sendMessage(
-						prefix + "§e" + killer.getName() + " §aの残りHPは§d " + killer.getHealth());
+				double killerhp = killer.getHealth();
+				BigDecimal bd = new BigDecimal(killerhp);
+
+				player.sendMessage(prefix + "§e" + killer.getName() + " §aの残りHPは§d " + bd);
 				player.sendMessage(prefix + "§e" + killer.getName() + " §aの使用Kitは§d "
 						+ kits.getKits().getOrDefault(killer.getUniqueId(), null));
 
@@ -63,8 +69,11 @@ public class PlayerKillListener implements Listener {
 				killer.setHealth(killer.getMaxHealth());
 			}
 
-			kits.getKits().getOrDefault(player.getUniqueId(), null);
+			kits.getKits().remove(player.getUniqueId());
+			kits.getKits().put(player.getUniqueId(), "");
+			player.removeMetadata("combat", plugin);
 
+			player.setVelocity(new Vector());
 			player.spigot().respawn();
 
 			inv.clear();

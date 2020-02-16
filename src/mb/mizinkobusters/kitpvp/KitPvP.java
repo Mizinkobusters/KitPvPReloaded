@@ -1,5 +1,6 @@
 package mb.mizinkobusters.kitpvp;
 
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -38,8 +39,10 @@ import mb.mizinkobusters.kitpvp.kit.Sniper;
 import mb.mizinkobusters.kitpvp.kit.Standard;
 import mb.mizinkobusters.kitpvp.kit.Tank;
 import mb.mizinkobusters.kitpvp.kit.TapiocaMilkTea;
+import mb.mizinkobusters.kitpvp.listener.ItemDropListener;
 import mb.mizinkobusters.kitpvp.listener.PlayerFallOrTeleportToFieldListener;
 import mb.mizinkobusters.kitpvp.listener.PlayerHasEntriesListener;
+import mb.mizinkobusters.kitpvp.listener.PlayerItemClickListener;
 import mb.mizinkobusters.kitpvp.listener.PlayerItemDamageListener;
 import mb.mizinkobusters.kitpvp.listener.PlayerKillListener;
 import mb.mizinkobusters.kitpvp.listener.PlayerLeaveTeamListener;
@@ -66,22 +69,25 @@ public class KitPvP extends JavaPlugin implements Listener {
 	Team yellow;
 
 	public void onEnable() {
+		String plname = getDescription().getName();
+		String ver = getDescription().getVersion();
+		List<String> author = getDescription().getAuthors();
+		String prefix = "[" + plname + "] ";
 
-		System.out.println("");
-		System.out.println("Name: " + getDescription().getName());
-		System.out.println("Version: " + getDescription().getVersion());
-		System.out.println("Authors: " + getDescription().getAuthors());
-		System.out.println("");
-		System.out.println("This plug-in has started up.");
-		System.out.println("Hello :)");
-		System.out.println("");
+		System.out.println(prefix + "");
+		System.out.println(prefix + plname + "(v." + ver + ") - by" + author);
+		System.out.println(prefix + "This plug-in has started up.");
+		System.out.println(prefix + "Hello players :)");
+
 
 		SelectGUI select = new SelectGUI(this);
 
 		// Listener 登録
+		Bukkit.getPluginManager().registerEvents(new ItemDropListener(this, select), this);
 		Bukkit.getPluginManager()
 				.registerEvents(new PlayerFallOrTeleportToFieldListener(this, select), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerHasEntriesListener(this), this);
+		Bukkit.getPluginManager().registerEvents(new PlayerItemClickListener(), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerItemDamageListener(this), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerKillListener(this, select), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerLeaveTeamListener(this), this);
@@ -206,16 +212,12 @@ public class KitPvP extends JavaPlugin implements Listener {
 	}
 
 	public void onReload() {
-		System.out.println("");
 		System.out.println("This plug-in is reloaded now...");
-		System.out.println("");
 	}
 
 	public void onDisable() {
-		System.out.println("");
 		System.out.println("This plug-in has shut down...");
-		System.out.println("See you next time.");
-		System.out.println("");
+		System.out.println("See you next time. ;)");
 	}
 
 	public Team createKitPvPTeam(String teamName) {

@@ -159,6 +159,8 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(chestplate);
 		inv.setLeggings(leggings);
 		inv.setBoots(boots);
+
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 1000000, 2, false, false));
 	}
 
 	public void counter(Player player) {
@@ -211,7 +213,7 @@ public class DistributeKits implements Listener {
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 		sword.addEnchantment(Enchantment.FIRE_ASPECT, 1);
 		ItemStack bow = new ItemStack(Material.BOW);
-		sword.addEnchantment(Enchantment.ARROW_FIRE, 1);
+		bow.addEnchantment(Enchantment.ARROW_FIRE, 1);
 
 		inv.addItem(sword);
 		inv.addItem(bow);
@@ -429,13 +431,14 @@ public class DistributeKits implements Listener {
 		inv.setChestplate(new ItemStack(Material.DIAMOND_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.DIAMOND_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.DIAMOND_BOOTS));
+
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 1000000, 2, false, false));
 	}
 
 	public void tapiocamilktea(Player player) {
 		PlayerInventory inv = player.getInventory();
 
 		inv.addItem(new ItemStack(Material.IRON_SWORD));
-		inv.addItem(new ItemStack(Material.GOLDEN_APPLE));
 		inv.addItem(new ItemStack(Material.MILK_BUCKET));
 		bone(player);
 

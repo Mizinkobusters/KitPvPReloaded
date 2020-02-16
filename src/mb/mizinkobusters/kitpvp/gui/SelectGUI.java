@@ -28,7 +28,7 @@ public class SelectGUI implements Listener {
 		this.plugin = plugin;
 	}
 
-	private HashMap<UUID, String> kits = new HashMap<>();
+	private HashMap<UUID, String> kits = new HashMap<UUID, String>();
 
 	public HashMap<UUID, String> getKits() {
 		return kits;
@@ -64,7 +64,7 @@ public class SelectGUI implements Listener {
 		ItemStack recover = new ItemStack(Material.GHAST_TEAR);
 		ItemStack revival = new ItemStack(Material.POTION, 1, (short) 8193);
 		ItemStack slasher = new ItemStack(Material.DIAMOND_SWORD);
-		ItemStack sniper = new ItemStack(Material.LONG_GRASS);
+		ItemStack sniper = new ItemStack(Material.LONG_GRASS, 1, (short) 1);
 		ItemStack standard = new ItemStack(Material.IRON_SWORD);
 		ItemStack tank = new ItemStack(Material.ANVIL);
 		ItemStack tapiocamilktea = new ItemStack(Material.MILK_BUCKET);

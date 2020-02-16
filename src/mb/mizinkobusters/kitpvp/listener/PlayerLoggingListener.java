@@ -15,7 +15,7 @@ import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 public class PlayerLoggingListener implements Listener {
 
 	JavaPlugin plugin;
-	private SelectGUI kits;
+	SelectGUI kits;
 
 	public PlayerLoggingListener(KitPvP plugin, SelectGUI kits) {
 		this.plugin = plugin;
@@ -29,10 +29,10 @@ public class PlayerLoggingListener implements Listener {
 		Player player = event.getPlayer();
 		PlayerInventory inv = player.getInventory();
 
-		if (kits.getKits().containsKey(player.getUniqueId())) {
-			player.sendMessage(prefix + "§c前回ログアウトした場所が戦場だったので死亡扱いとなりました");
-			kits.getKits().put(player.getUniqueId(), null);
-		}
+		if (player.hasMetadata("combat"))
+			player.removeMetadata("combat", plugin);
+
+		kits.getKits().put(player.getUniqueId(), "");
 
 		inv.clear();
 		inv.setHelmet(new ItemStack(Material.AIR));

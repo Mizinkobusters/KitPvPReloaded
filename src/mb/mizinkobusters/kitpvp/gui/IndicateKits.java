@@ -1002,6 +1002,7 @@ public class IndicateKits implements Listener {
 		ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE);
 
 		ItemStack ability1 = new ItemStack(Material.FEATHER);
+		ItemStack ability2 = new ItemStack(Material.IRON_BOOTS);
 
 		ItemStack helmet = new ItemStack(Material.LEATHER_HELMET);
 		ItemStack chestplate = new ItemStack(Material.IRON_CHESTPLATE);
@@ -1020,9 +1021,15 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7金のリンゴを食べると移動速度上昇IIが付与されるが",
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7金のリンゴを食べると移動速度上昇II30秒間が付与されるが",
 				"§7金のリンゴを食べた際の効果は無効化され", "§7体力が減少する", "§7また移動速度が上昇している間は体力が自然回復しない")));
 		ability1.setItemMeta(meta);
+
+		meta = ability2.getItemMeta();
+		meta.setDisplayName("§7特殊");
+		meta.setLore(new ArrayList<String>(
+				Arrays.asList("§7歩くと1/10の確率で体力が1回復する", "§7ただし移動速度が上昇している間は体力は回復しない")));
+		ability2.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
 		meta.setDisplayName("§7頭装備");
@@ -1050,6 +1057,7 @@ public class IndicateKits implements Listener {
 		gui.setItem(3, boots);
 
 		gui.setItem(9, ability1);
+		gui.setItem(10, ability2);
 
 		gui.setItem(18, sword);
 		gui.setItem(19, gapple);
@@ -1613,7 +1621,7 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory tankGUI() {
-		Inventory gui = Bukkit.createInventory(null, 27, "§b§lStandard Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§b§lTank Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.WOOD_SWORD);
 		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
@@ -1639,7 +1647,7 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7移動速度低下II")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7移動速度低下III")));
 		ability1.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
@@ -1700,15 +1708,10 @@ public class IndicateKits implements Listener {
 		meta.setLore(new ArrayList<String>(Arrays.asList("§7牛乳×1")));
 		gapple.setItemMeta(meta);
 
-		meta = gapple.getItemMeta();
-		meta.setDisplayName("§7補助");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7金のリンゴ×1")));
-		gapple.setItemMeta(meta);
-
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(
-				new ArrayList<String>(Arrays.asList("§7牛乳(ﾀﾋﾟｵｶﾐﾙｸﾃｨｰ)を飲むと", "§7毒の効果がかき消される")));
+		meta.setLore(new ArrayList<String>(
+				Arrays.asList("§7牛乳(ﾀﾋﾟｵｶﾐﾙｸﾃｨｰ)を飲むと", "§7毒の効果がかき消される", "§7さらに再生能力Iが5秒間付与される")));
 		ability1.setItemMeta(meta);
 
 		meta = helmet.getItemMeta();
@@ -1740,7 +1743,6 @@ public class IndicateKits implements Listener {
 
 		gui.setItem(18, sword);
 		gui.setItem(19, milk);
-		gui.setItem(20, gapple);
 
 		return gui;
 	}

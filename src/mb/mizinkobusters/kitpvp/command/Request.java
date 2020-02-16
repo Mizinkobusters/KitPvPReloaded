@@ -38,7 +38,6 @@ public class Request implements CommandExecutor {
 			return true;
 		}
 
-
 		int l = args.length;
 
 		switch (l) {
@@ -46,43 +45,56 @@ public class Request implements CommandExecutor {
 				player.sendMessage(prefix + "§c引数が不足しています");
 				player.sendMessage(prefix + "§c使い方: /request <player>");
 				break;
+
 			case 1:
 				if (cmd.getName().equalsIgnoreCase("request")) {
-					if (Bukkit.getPlayerExact(args[0]).getName() != null
-							&& player.getName() != Bukkit.getPlayerExact(args[0]).getName()) {
+					if (Bukkit.getPlayerExact(args[0]) == null) {
+						player.sendMessage(prefix + "§e" + args[0] + " §cは現在オフラインです");
+						return true;
+					}
 
-						for (Team teams : sb.getTeams()) {
-							if (teams.getEntries().size() == 0 && !teams.hasEntry(player.getName())
-									&& !teams.hasEntry(Bukkit.getPlayerExact(args[0]).getName())) {
-								player.sendMessage(
-										prefix + "§e§o" + Bukkit.getPlayerExact(args[0]).getName()
-												+ " §aにチーム申請を送信しました");
-								Bukkit.getPlayerExact(args[0]).getPlayer().sendMessage(
-										prefix + "§6§o" + player.getName() + " §aからチーム申請が送信されました");
-								Bukkit.getPlayerExact(args[0]).getPlayer()
-										.sendMessage(prefix + "§a申請を受諾するには §e/accept §aを実行してください");
-								Bukkit.getPlayerExact(args[0]).getPlayer()
-										.sendMessage(prefix + "§a申請は20秒後に自動的に破棄されます");
+					if (player.getName() == Bukkit.getPlayerExact(args[0]).getName()) {
+						player.sendMessage(prefix + "§c自分にチーム申請は送信できません");
+						return true;
+					}
 
-								send.put(Bukkit.getPlayerExact(args[0]).getUniqueId(),
-										player.getUniqueId());
-
-								new PlayerHasEntriesListener((KitPvP) plugin).runTaskLater(plugin,
-										400);
-
-							} else {
-								player.sendMessage(prefix + "§cチーム申請の送信に失敗しました");
-							}
+					for (Team teams : sb.getTeams()) {
+						if (teams.hasEntry(player.getName())) {
+							player.sendMessage(prefix + "§cあなたはすでに他のチームに参加しています");
+							return true;
 						}
-					} else {
-						player.sendMessage(prefix + "§cチーム申請の送信に失敗しました");
+
+						if (teams.hasEntry(Bukkit.getPlayerExact(args[0]).getName())) {
+							player.sendMessage(prefix + "§e" + args[0] + " §cはすでに他のチームに参加しています");
+						}
+
+						if (!teams.getEntries().isEmpty()) {
+							player.sendMessage(prefix + "§cこれ以上チームは作成できません");
+							player.sendMessage(prefix + "§cしばらく経ってからお試しください");
+							return true;
+						}
+
+						player.sendMessage(prefix + "§e§o"
+								+ Bukkit.getPlayerExact(args[0]).getName() + " §aにチーム申請を送信しました");
+						Bukkit.getPlayerExact(args[0]).getPlayer().sendMessage(
+								prefix + "§6§o" + player.getName() + " §aからチーム申請が送信されました");
+						Bukkit.getPlayerExact(args[0]).getPlayer()
+								.sendMessage(prefix + "§a申請を受諾するには §e/accept §aを実行してください");
+						Bukkit.getPlayerExact(args[0]).getPlayer()
+								.sendMessage(prefix + "§a申請は20秒後に自動的に破棄されます");
+
+						send.put(Bukkit.getPlayerExact(args[0]).getUniqueId(),
+								player.getUniqueId());
+
+						new PlayerHasEntriesListener((KitPvP) plugin).runTaskLater(plugin, 400);
+
 					}
 				}
 				break;
+
 			default:
 				break;
 		}
 		return true;
 	}
-
 }
