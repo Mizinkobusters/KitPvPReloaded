@@ -81,6 +81,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 
 
 		SelectGUI select = new SelectGUI(this);
+		// RespawnTimer respawnT = new RespawnTimer(this, select);
 
 		// Listener 登録
 		Bukkit.getPluginManager().registerEvents(new ItemDropListener(this, select), this);

@@ -109,11 +109,11 @@ public class Madness implements Listener {
 		Location to = event.getTo();
 
 		if (Math.abs(from.getBlockX() - to.getBlockX()) >= 1
-				|| Math.abs(from.getBlockZ() - to.getBlockZ()) >= 1 && kits.getKits()
-						.getOrDefault(player.getUniqueId(), null).equals("Madness")) {
+				|| Math.abs(from.getBlockZ() - to.getBlockZ()) >= 1) {
 			Random r = new Random();
 			int i = r.nextInt(10);
-			if (i == 0 && !player.hasPotionEffect(PotionEffectType.SPEED)) {
+			if (i == 0 && kits.getKits().getOrDefault(player.getUniqueId(), "").equals("Madness")
+					&& !player.hasPotionEffect(PotionEffectType.SPEED)) {
 				if (player.getHealth() < player.getMaxHealth()) {
 					player.setHealth(player.getHealth() + 1);
 					player.sendMessage("§aHealing Success!");

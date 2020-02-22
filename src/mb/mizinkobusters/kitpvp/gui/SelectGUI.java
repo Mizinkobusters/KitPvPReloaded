@@ -70,7 +70,7 @@ public class SelectGUI implements Listener {
 		ItemStack tapiocamilktea = new ItemStack(Material.MILK_BUCKET);
 
 		ItemStack line1 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 7);
-		ItemStack line2 = new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 7);
+		ItemStack line2 = new ItemStack(Material.SIGN);
 
 		meta = archer.getItemMeta();
 		meta.setDisplayName("§bArcher Kitを選択する");

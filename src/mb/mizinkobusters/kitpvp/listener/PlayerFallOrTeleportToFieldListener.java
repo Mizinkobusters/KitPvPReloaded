@@ -1,8 +1,11 @@
 package mb.mizinkobusters.kitpvp.listener;
 
+import java.util.HashMap;
+import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,14 +25,14 @@ import mb.mizinkobusters.kitpvp.gui.SelectGUI;
 public class PlayerFallOrTeleportToFieldListener implements Listener {
 
 	JavaPlugin plugin;
+	String prefix = "§7[§dKitPvP§7] ";
 	private SelectGUI kits;
+	private HashMap<UUID, Long> lastWarned = new HashMap<>();
 
 	public PlayerFallOrTeleportToFieldListener(KitPvP plugin, SelectGUI kits) {
 		this.plugin = plugin;
 		this.kits = kits;
 	}
-
-	String prefix = "§7[§dKitPvP§7] ";
 
 	@EventHandler
 	public void onDamage(EntityDamageEvent event) {
@@ -60,67 +63,74 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 
 		if (action.equals(Action.PHYSICAL)) {
 
-			if (Bukkit
-					.getWorld("kitpvp").getBlockAt(event.getClickedBlock().getX(),
-							event.getClickedBlock().getY() - 1, event.getClickedBlock().getZ())
-					.getType().equals(Material.GRASS)) {
+			Block interact = Bukkit.getWorld("kitpvp").getBlockAt(event.getClickedBlock().getX(),
+					event.getClickedBlock().getY() - 1, event.getClickedBlock().getZ());
+
+			if (interact.getType().equals(Material.SMOOTH_BRICK)) {
 				if (kits.getKits().getOrDefault(player.getUniqueId(), "").length() > 1) {
 					player.teleport(
-							new Location(Bukkit.getWorld("kitpvp"), 41.5, 4.0, 54.5, pitch, yaw),
+							new Location(Bukkit.getWorld("kitpvp"), 41.5, 5.0, 54.5, yaw, pitch),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,
 							3, false, false));
 					player.setMetadata("combat", new FixedMetadataValue(plugin, player));
 				} else {
-					player.sendMessage(prefix + "§cKitを選択してください");
+					if (lastWarned.getOrDefault(player.getUniqueId(), 0L) + 1000L < System
+							.currentTimeMillis()) {
+						player.sendMessage(prefix + "§cKitを選択してください");
+						lastWarned.put(player.getUniqueId(), System.currentTimeMillis());
+					}
 				}
 			}
 
-			if (Bukkit
-					.getWorld("kitpvp").getBlockAt(event.getClickedBlock().getX(),
-							event.getClickedBlock().getY() - 1, event.getClickedBlock().getZ())
-					.getType().equals(Material.SANDSTONE)) {
+			if (interact.getType().equals(Material.SANDSTONE)) {
 				if (kits.getKits().getOrDefault(player.getUniqueId(), "").length() > 1) {
 					player.teleport(
-							new Location(Bukkit.getWorld("kitpvp"), -63.5, 4.0, 11.5, pitch, yaw),
+							new Location(Bukkit.getWorld("kitpvp"), -63.5, 4.0, 11.5, yaw, pitch),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,
 							3, false, false));
 					player.setMetadata("combat", new FixedMetadataValue(plugin, player));
 				} else {
-					player.sendMessage(prefix + "§cKitを選択してください");
+					if (lastWarned.getOrDefault(player.getUniqueId(), 0L) + 1000L < System
+							.currentTimeMillis()) {
+						player.sendMessage(prefix + "§cKitを選択してください");
+						lastWarned.put(player.getUniqueId(), System.currentTimeMillis());
+					}
 				}
 			}
 
-			if (Bukkit
-					.getWorld("kitpvp").getBlockAt(event.getClickedBlock().getX(),
-							event.getClickedBlock().getY() - 1, event.getClickedBlock().getZ())
-					.getType().equals(Material.NETHERRACK)) {
+			if (interact.getType().equals(Material.NETHERRACK)) {
 				if (kits.getKits().getOrDefault(player.getUniqueId(), "").length() > 1) {
 					player.teleport(
-							new Location(Bukkit.getWorld("kitpvp"), -11.5, 6.0, -53.5, pitch, yaw),
+							new Location(Bukkit.getWorld("kitpvp"), -11.5, 6.0, -53.5, yaw, pitch),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,
 							3, false, false));
 					player.setMetadata("combat", new FixedMetadataValue(plugin, player));
 				} else {
-					player.sendMessage(prefix + "§cKitを選択してください");
+					if (lastWarned.getOrDefault(player.getUniqueId(), 0L) + 1000L < System
+							.currentTimeMillis()) {
+						player.sendMessage(prefix + "§cKitを選択してください");
+						lastWarned.put(player.getUniqueId(), System.currentTimeMillis());
+					}
 				}
 			}
 
-			if (Bukkit
-					.getWorld("kitpvp").getBlockAt(event.getClickedBlock().getX(),
-							event.getClickedBlock().getY() - 1, event.getClickedBlock().getZ())
-					.getType().equals(Material.MYCEL)) {
+			if (interact.getType().equals(Material.MYCEL)) {
 				if (kits.getKits().getOrDefault(player.getUniqueId(), "").length() > 1) {
 					player.teleport(
-							new Location(Bukkit.getWorld("kitpvp"), 68.5, 11.0, -14.5, pitch, yaw),
+							new Location(Bukkit.getWorld("kitpvp"), 68.5, 11.0, -14.5, yaw, pitch),
 							TeleportCause.PLUGIN);
 					player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60,
 							3, false, false));
 					player.setMetadata("combat", new FixedMetadataValue(plugin, player));
 				} else {
-					player.sendMessage(prefix + "§cKitを選択してください");
+					if (lastWarned.getOrDefault(player.getUniqueId(), 0L) + 1000L < System
+							.currentTimeMillis()) {
+						player.sendMessage(prefix + "§cKitを選択してください");
+						lastWarned.put(player.getUniqueId(), System.currentTimeMillis());
+					}
 				}
 			}
 		}

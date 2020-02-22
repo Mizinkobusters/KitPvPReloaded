@@ -952,7 +952,7 @@ public class IndicateKits implements Listener {
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§71/6の確率でダメージを与えたプレイヤーの真上に", "§7雷を落とす")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§71/7の確率でダメージを与えたプレイヤーの真上に", "§7雷を落とす")));
 		ability1.setItemMeta(meta);
 
 		meta = ability2.getItemMeta();

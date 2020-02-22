@@ -54,18 +54,19 @@ public class Lightning implements Listener {
 			return;
 
 		Random r = new Random();
-		int i = r.nextInt(6);
+		int i = r.nextInt(8);
 
 		if (kits.getKits().getOrDefault(damagee.getUniqueId(), "").equals("Lightning")) {
 			return;
 		}
 
 		if (kits.getKits().getOrDefault(damager.getUniqueId(), "").equals("Lightning")) {
-			if (i == 0 && damagee.hasMetadata("combat")) {
+			if (i == 0 && damagee.hasMetadata("combat") && !kits.getKits()
+					.getOrDefault(damagee.getUniqueId(), "").equals("Lightning")) {
 				Random d = new Random();
-				int di = d.nextInt(5);
+				int di = d.nextInt(3);
 				damagee.getWorld().strikeLightningEffect(damagee.getLocation());
-				damagee.damage(di + 5);
+				damagee.damage(di + 1, damagee);
 			}
 		}
 	}

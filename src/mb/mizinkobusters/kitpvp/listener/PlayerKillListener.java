@@ -41,7 +41,8 @@ public class PlayerKillListener implements Listener {
 				double killerhp = killer.getHealth();
 				BigDecimal bd = new BigDecimal(killerhp);
 
-				player.sendMessage(prefix + "§e" + killer.getName() + " §aの残りHPは§d " + bd);
+				player.sendMessage(prefix + "§e" + killer.getName() + " §aの残りHPは§d "
+						+ String.format("%.1f", bd));
 				player.sendMessage(prefix + "§e" + killer.getName() + " §aの使用Kitは§d "
 						+ kits.getKits().getOrDefault(killer.getUniqueId(), null));
 
@@ -58,7 +59,8 @@ public class PlayerKillListener implements Listener {
 				double killerhp = killer.getHealth();
 				BigDecimal bd = new BigDecimal(killerhp);
 
-				player.sendMessage(prefix + "§e" + killer.getName() + " §aの残りHPは§d " + bd);
+				player.sendMessage(prefix + "§e" + killer.getName() + " §aの残りHPは§d "
+						+ String.format("%.1f", bd));
 				player.sendMessage(prefix + "§e" + killer.getName() + " §aの使用Kitは§d "
 						+ kits.getKits().getOrDefault(killer.getUniqueId(), null));
 
@@ -72,6 +74,8 @@ public class PlayerKillListener implements Listener {
 			kits.getKits().remove(player.getUniqueId());
 			kits.getKits().put(player.getUniqueId(), "");
 			player.removeMetadata("combat", plugin);
+			player.removeMetadata("respawn", plugin);
+			player.removeMetadata("fastrespawn", plugin);
 
 			player.setVelocity(new Vector());
 			player.spigot().respawn();

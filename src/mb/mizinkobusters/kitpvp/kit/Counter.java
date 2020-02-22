@@ -65,7 +65,7 @@ public class Counter implements Listener {
 			if (cause.equals(DamageCause.ENTITY_ATTACK)) {
 				if (i == 0 && damager.hasMetadata("combat")) {
 					event.setDamage(d / 2);
-					damager.damage(d / 2);
+					damager.damage(d / 2, damagee);
 					damagee.playSound(damagee.getLocation(), Sound.ANVIL_LAND, 1, 1);
 					damagee.sendMessage("§aCounter Success!");
 				}
@@ -76,7 +76,7 @@ public class Counter implements Listener {
 
 				if (i == 0 && damager.hasMetadata("combat")) {
 					event.setDamage(d / 2);
-					shooter.damage(d / 2);
+					shooter.damage(d / 2, damagee);
 					damagee.playSound(damagee.getLocation(), Sound.ANVIL_LAND, 1, 1);
 					damagee.sendMessage("§aCounter Success!");
 				}

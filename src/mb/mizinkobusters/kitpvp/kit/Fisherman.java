@@ -82,7 +82,8 @@ public class Fisherman implements Listener {
 						new Location(caught.getWorld(),
 								(player.getLocation().getX() + caught.getLocation().getX()) / 2,
 								(player.getLocation().getY() + caught.getLocation().getY()) / 2,
-								(player.getLocation().getZ() + caught.getLocation().getZ()) / 2),
+								(player.getLocation().getZ() + caught.getLocation().getZ()) / 2,
+								caught.getLocation().getYaw(), caught.getLocation().getPitch()),
 						TeleportCause.UNKNOWN);
 				player.sendMessage("§bFishing Success!");
 				player.playSound(player.getLocation(), Sound.CLICK, 1, 1);
