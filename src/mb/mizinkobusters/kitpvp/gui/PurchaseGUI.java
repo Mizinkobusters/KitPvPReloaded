@@ -1,6 +1,8 @@
 package mb.mizinkobusters.kitpvp.gui;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -37,6 +39,7 @@ public class PurchaseGUI implements Listener {
 		ItemStack blizzard = new ItemStack(Material.ICE);
 		ItemStack counter = new ItemStack(Material.DIAMOND_CHESTPLATE);
 		ItemStack enderman = new ItemStack(Material.ENDER_PEARL);
+		ItemStack fisherman = new ItemStack(Material.RAW_FISH);
 		ItemStack healthboost = new ItemStack(Material.GOLDEN_APPLE);
 		ItemStack madness = new ItemStack(Material.POTION, 1, (short) 8204);
 		ItemStack rabbit = new ItemStack(Material.RABBIT_FOOT);
@@ -45,42 +48,57 @@ public class PurchaseGUI implements Listener {
 
 		meta = attacker.getItemMeta();
 		meta.setDisplayName("§eAttacker Kitを選択する");
+		meta.setLore(new ArrayList<>(Arrays.asList("§7購入コスト: 5500GameCoins")));
 		attacker.setItemMeta(meta);
 
 		meta = berserker.getItemMeta();
 		meta.setDisplayName("§eBerserker Kitを選択する");
+		meta.setLore(new ArrayList<>(Arrays.asList("§7購入コスト: 9000GameCoins")));
 		berserker.setItemMeta(meta);
 
 		meta = blizzard.getItemMeta();
 		meta.setDisplayName("§eBlizzard Kitを選択する");
+		meta.setLore(new ArrayList<>(Arrays.asList("§7購入コスト: 8000GameCoins")));
 		blizzard.setItemMeta(meta);
 
 		meta = counter.getItemMeta();
 		meta.setDisplayName("§eCounter Kitを選択する");
+		meta.setLore(new ArrayList<>(Arrays.asList("§7購入コスト: 8000GameCoins")));
 		counter.setItemMeta(meta);
 
 		meta = enderman.getItemMeta();
 		meta.setDisplayName("§eEnderman Kitを選択する");
+		meta.setLore(new ArrayList<>(Arrays.asList("§7購入コスト: 9000GameCoins")));
 		enderman.setItemMeta(meta);
+
+		meta = fisherman.getItemMeta();
+		meta.setDisplayName("§eFisherman Kitを選択する");
+		meta.setLore(new ArrayList<>(Arrays.asList("§7購入コスト: 9500GameCoins")));
+		fisherman.setItemMeta(meta);
 
 		meta = healthboost.getItemMeta();
 		meta.setDisplayName("§eHealthBoost Kitを選択する");
+		meta.setLore(new ArrayList<>(Arrays.asList("§7購入コスト: 9500GameCoins")));
 		healthboost.setItemMeta(meta);
 
 		meta = madness.getItemMeta();
 		meta.setDisplayName("§eMadness Kitを選択する");
+		meta.setLore(new ArrayList<>(Arrays.asList("§7購入コスト: 7000GameCoins")));
 		madness.setItemMeta(meta);
 
 		meta = rabbit.getItemMeta();
 		meta.setDisplayName("§eRabbit Kitを選択する");
+		meta.setLore(new ArrayList<>(Arrays.asList("§7購入コスト: 8500GameCoins")));
 		rabbit.setItemMeta(meta);
 
 		meta = revival.getItemMeta();
 		meta.setDisplayName("§eRevival Kitを選択する");
+		meta.setLore(new ArrayList<>(Arrays.asList("§7購入コスト: 9000GameCoins")));
 		revival.setItemMeta(meta);
 
 		meta = sniper.getItemMeta();
 		meta.setDisplayName("§eSniper Kitを選択する");
+		meta.setLore(new ArrayList<>(Arrays.asList("§7購入コスト: 7500GameCoins")));
 		sniper.setItemMeta(meta);
 
 		gui.setItem(0, attacker);
@@ -88,11 +106,12 @@ public class PurchaseGUI implements Listener {
 		gui.setItem(2, blizzard);
 		gui.setItem(3, counter);
 		gui.setItem(4, enderman);
-		gui.setItem(5, healthboost);
-		gui.setItem(6, madness);
-		gui.setItem(7, rabbit);
-		gui.setItem(8, revival);
-		gui.setItem(9, sniper);
+		gui.setItem(5, fisherman);
+		gui.setItem(6, healthboost);
+		gui.setItem(7, madness);
+		gui.setItem(8, rabbit);
+		gui.setItem(9, revival);
+		gui.setItem(10, sniper);
 
 		return gui;
 	}
@@ -166,13 +185,13 @@ public class PurchaseGUI implements Listener {
 				}
 			}
 
-			if (item.getItemMeta().getDisplayName().equals("§eAttacker Kitを選択する")) {
-				if (player.hasPermission("mizinkopvp.kit.purchase.attacker")) {
+			if (item.getItemMeta().getDisplayName().equals("§eBerserker Kitを選択する")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.berserker")) {
 					player.sendMessage(prefix + "§4既にこのKitを購入しています");
 					player.closeInventory();
 				} else {
-					if (ownconfig.getInt("GameCoins") >= 5500) {
-						ownconfig.set("GameCoins", ownconfig.getInt("GameCoins") - 5500);
+					if (ownconfig.getInt("GameCoins") >= 9000) {
+						ownconfig.set("GameCoins", ownconfig.getInt("GameCoins") - 9000);
 						try {
 							ownconfig.save(ownfile);
 						} catch (Exception e) {
@@ -180,7 +199,7 @@ public class PurchaseGUI implements Listener {
 						}
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user "
 								+ player.getName()
-								+ " permission set mizinkopvp.kit.purchase.attacker server=pvp");
+								+ " permission set mizinkopvp.kit.purchase.berserker server=pvp");
 						player.sendMessage(prefix + "§aKitの購入に成功しました");
 						player.closeInventory();
 					} else {
@@ -205,30 +224,6 @@ public class PurchaseGUI implements Listener {
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user "
 								+ player.getName()
 								+ " permission set mizinkopvp.kit.purchase.blizzard server=pvp");
-						player.sendMessage(prefix + "§aKitの購入に成功しました");
-						player.closeInventory();
-					} else {
-						player.sendMessage(prefix + "§4ゲームコインが足りません");
-						player.closeInventory();
-					}
-				}
-			}
-
-			if (item.getItemMeta().getDisplayName().equals("§eBerserker Kitを選択する")) {
-				if (player.hasPermission("mizinkopvp.kit.purchase.berserker")) {
-					player.sendMessage(prefix + "§4既にこのKitを購入しています");
-					player.closeInventory();
-				} else {
-					if (ownconfig.getInt("GameCoins") >= 9000) {
-						ownconfig.set("GameCoins", ownconfig.getInt("GameCoins") - 9000);
-						try {
-							ownconfig.save(ownfile);
-						} catch (Exception e) {
-							System.out.println(e.getMessage());
-						}
-						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user "
-								+ player.getName()
-								+ " permission set mizinkopvp.kit.purchase.berserker server=pvp");
 						player.sendMessage(prefix + "§aKitの購入に成功しました");
 						player.closeInventory();
 					} else {
@@ -277,6 +272,30 @@ public class PurchaseGUI implements Listener {
 						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user "
 								+ player.getName()
 								+ " permission set mizinkopvp.kit.purchase.enderman server=pvp");
+						player.sendMessage(prefix + "§aKitの購入に成功しました");
+						player.closeInventory();
+					} else {
+						player.sendMessage(prefix + "§4ゲームコインが足りません");
+						player.closeInventory();
+					}
+				}
+			}
+
+			if (item.getItemMeta().getDisplayName().equals("§eFisherman Kitを選択する")) {
+				if (player.hasPermission("mizinkopvp.kit.purchase.fisherman")) {
+					player.sendMessage(prefix + "§4既にこのKitを購入しています");
+					player.closeInventory();
+				} else {
+					if (ownconfig.getInt("GameCoins") >= 9500) {
+						ownconfig.set("GameCoins", ownconfig.getInt("GameCoins") - 9500);
+						try {
+							ownconfig.save(ownfile);
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+						}
+						Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "lp user "
+								+ player.getName()
+								+ " permission set mizinkopvp.kit.purchase.fisherman server=pvp");
 						player.sendMessage(prefix + "§aKitの購入に成功しました");
 						player.closeInventory();
 					} else {

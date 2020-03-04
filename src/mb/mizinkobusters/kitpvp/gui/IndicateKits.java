@@ -187,6 +187,7 @@ public class IndicateKits implements Listener {
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
 		ItemStack rod = new ItemStack(Material.FISHING_ROD);
+		rod.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
 		ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE, 2);
 
 		ItemStack ability1 = new ItemStack(Material.IRON_FENCE);
@@ -203,7 +204,7 @@ public class IndicateKits implements Listener {
 
 		meta = rod.getItemMeta();
 		meta.setDisplayName("§7補助");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7釣り竿×1")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7釣り竿×1[耐久10]")));
 		rod.setItemMeta(meta);
 
 		meta = gapple.getItemMeta();
@@ -399,7 +400,7 @@ public class IndicateKits implements Listener {
 
 		meta = sword.getItemMeta();
 		meta.setDisplayName("§7武器");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7鉄の剣")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7ダイヤの剣[ダメージ増加5]")));
 		sword.setItemMeta(meta);
 
 		meta = gapple.getItemMeta();
@@ -642,17 +643,16 @@ public class IndicateKits implements Listener {
 	}
 
 	public Inventory fishermanGUI() {
-		Inventory gui = Bukkit.createInventory(null, 27, "§b§lFisherman Kit§7(一般Kit)");
+		Inventory gui = Bukkit.createInventory(null, 27, "§c§lFisherman Kit§7(購入Kit)");
 
 		ItemStack sword = new ItemStack(Material.IRON_SWORD);
 
 		ItemStack rod = new ItemStack(Material.FISHING_ROD);
-		ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE);
 
 		ItemStack ability1 = new ItemStack(Material.RAW_FISH);
 
 		ItemStack helmet = new ItemStack(Material.CHAINMAIL_HELMET);
-		ItemStack chestplate = new ItemStack(Material.IRON_CHESTPLATE);
+		ItemStack chestplate = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 		ItemStack leggings = new ItemStack(Material.LEATHER_LEGGINGS);
 		ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
 		boots.addEnchantment(Enchantment.DEPTH_STRIDER, 1);
@@ -661,11 +661,6 @@ public class IndicateKits implements Listener {
 		meta.setDisplayName("§7武器");
 		meta.setLore(new ArrayList<String>(Arrays.asList("§7鉄の剣")));
 		sword.setItemMeta(meta);
-
-		meta = gapple.getItemMeta();
-		meta.setDisplayName("§7補助");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7金のリンゴ×1")));
-		gapple.setItemMeta(meta);
 
 		meta = ability1.getItemMeta();
 		meta.setDisplayName("§7特殊");
@@ -679,7 +674,7 @@ public class IndicateKits implements Listener {
 
 		meta = chestplate.getItemMeta();
 		meta.setDisplayName("§7胴装備");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7鉄のチェストプレート")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7チェーンのチェストプレート")));
 		chestplate.setItemMeta(meta);
 
 		meta = leggings.getItemMeta();
@@ -701,7 +696,6 @@ public class IndicateKits implements Listener {
 
 		gui.setItem(18, sword);
 		gui.setItem(19, rod);
-		gui.setItem(20, gapple);
 
 		return gui;
 	}

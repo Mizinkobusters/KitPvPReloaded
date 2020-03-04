@@ -109,7 +109,7 @@ public class SelectGUI implements Listener {
 		enderman.setItemMeta(meta);
 
 		meta = fisherman.getItemMeta();
-		meta.setDisplayName("§bFisherman Kitを選択する");
+		meta.setDisplayName("§cFisherman Kitを選択する");
 		fisherman.setItemMeta(meta);
 
 		meta = flame.getItemMeta();
@@ -191,24 +191,24 @@ public class SelectGUI implements Listener {
 		gui.setItem(6, blizzard);
 		gui.setItem(7, berserker);
 		gui.setItem(8, counter);
-		gui.setItem(9, fisherman);
-		gui.setItem(10, flame);
-		gui.setItem(11, iron);
-		gui.setItem(12, lightning);
+		gui.setItem(9, flame);
+		gui.setItem(10, iron);
+		gui.setItem(11, lightning);
+		gui.setItem(12, miner);
 		gui.setItem(13, line1);
 		gui.setItem(14, enderman);
-		gui.setItem(15, healthboost);
-		gui.setItem(16, madness);
-		gui.setItem(17, rabbit);
-		gui.setItem(18, miner);
-		gui.setItem(19, potionhandler);
-		gui.setItem(20, recover);
-		gui.setItem(21, slasher);
+		gui.setItem(15, fisherman);
+		gui.setItem(16, healthboost);
+		gui.setItem(17, madness);
+		gui.setItem(18, potionhandler);
+		gui.setItem(19, recover);
+		gui.setItem(20, slasher);
+		gui.setItem(21, standard);
 		gui.setItem(22, line1);
-		gui.setItem(23, revival);
-		gui.setItem(24, sniper);
-		gui.setItem(27, standard);
-		gui.setItem(28, tank);
+		gui.setItem(23, rabbit);
+		gui.setItem(24, revival);
+		gui.setItem(25, sniper);
+		gui.setItem(27, tank);
 		gui.setItem(31, line1);
 		gui.setItem(40, line2);
 		gui.setItem(49, tapiocamilktea);
@@ -383,13 +383,18 @@ public class SelectGUI implements Listener {
 				}
 			}
 
-			if (item.getItemMeta().getDisplayName().equals("§bFisherman Kitを選択する")) {
+			if (item.getItemMeta().getDisplayName().equals("§cFisherman Kitを選択する")) {
 				if (action.equals(InventoryAction.PICKUP_ALL)) {
-					clearInv(player);
-					distribute.fisherman(player);
-					kits.put(player.getUniqueId(), "Fisherman");
-					player.sendMessage(prefix + "§bFisherman Kit を選択しました!");
-				} else if (item.getItemMeta().getDisplayName().equals("§bFisherman Kitを選択する")
+					if (player.hasPermission("mizinkopvp.kit.purchase.fisherman")) {
+						clearInv(player);
+						distribute.fisherman(player);
+						kits.put(player.getUniqueId(), "Fisherman");
+						player.sendMessage(prefix + "§cFisherman Kit を選択しました!");
+					} else {
+						player.closeInventory();
+						player.sendMessage(prefix + "§cKitを購入してください");
+					}
+				} else if (item.getItemMeta().getDisplayName().equals("§cFisherman Kitを選択する")
 						&& action.equals(InventoryAction.PICKUP_HALF)) {
 					player.openInventory(indicate.fishermanGUI());
 				}

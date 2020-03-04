@@ -48,6 +48,7 @@ import mb.mizinkobusters.kitpvp.listener.PlayerKillListener;
 import mb.mizinkobusters.kitpvp.listener.PlayerLeaveTeamListener;
 import mb.mizinkobusters.kitpvp.listener.PlayerLoggingListener;
 import mb.mizinkobusters.kitpvp.listener.PlayerRespawnListener;
+import mb.mizinkobusters.kitpvp.listener.ProjectileHitListener;
 
 public class KitPvP extends JavaPlugin implements Listener {
 
@@ -94,6 +95,7 @@ public class KitPvP extends JavaPlugin implements Listener {
 		Bukkit.getPluginManager().registerEvents(new PlayerLeaveTeamListener(this), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerLoggingListener(this, select), this);
 		Bukkit.getPluginManager().registerEvents(new PlayerRespawnListener(this, select), this);
+		Bukkit.getPluginManager().registerEvents(new ProjectileHitListener(this), this);
 
 		Bukkit.getPluginManager().registerEvents(new DistributeKits(this), this);
 		Bukkit.getPluginManager().registerEvents(new IndicateKits(this), this);

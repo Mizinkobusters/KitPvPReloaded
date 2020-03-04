@@ -73,8 +73,11 @@ public class DistributeKits implements Listener {
 	public void attacker(Player player) {
 		PlayerInventory inv = player.getInventory();
 
+		ItemStack rod = new ItemStack(Material.FISHING_ROD);
+		rod.addUnsafeEnchantment(Enchantment.DURABILITY, 10);
+
 		inv.addItem(new ItemStack(Material.IRON_SWORD));
-		inv.addItem(new ItemStack(Material.FISHING_ROD));
+		inv.addItem(rod);
 		inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 2));
 		bone(player);
 
@@ -145,11 +148,8 @@ public class DistributeKits implements Listener {
 		lmeta.setColor(Color.AQUA);
 		leggings.setItemMeta(lmeta);
 
-		ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
+		ItemStack boots = new ItemStack(Material.DIAMOND_BOOTS);
 		boots.addEnchantment(Enchantment.DURABILITY, 1);
-		lmeta = (LeatherArmorMeta) helmet.getItemMeta();
-		lmeta.setColor(Color.AQUA);
-		boots.setItemMeta(lmeta);
 
 		inv.addItem(new ItemStack(Material.IRON_SWORD));
 		inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 2));
@@ -198,11 +198,10 @@ public class DistributeKits implements Listener {
 
 		inv.addItem(new ItemStack(Material.IRON_SWORD));
 		inv.addItem(new ItemStack(Material.FISHING_ROD));
-		inv.addItem(new ItemStack(Material.GOLDEN_APPLE));
 		bone(player);
 
 		inv.setHelmet(new ItemStack(Material.CHAINMAIL_HELMET));
-		inv.setChestplate(new ItemStack(Material.IRON_CHESTPLATE));
+		inv.setChestplate(new ItemStack(Material.CHAINMAIL_CHESTPLATE));
 		inv.setLeggings(new ItemStack(Material.LEATHER_LEGGINGS));
 		inv.setBoots(new ItemStack(Material.LEATHER_BOOTS));
 	}

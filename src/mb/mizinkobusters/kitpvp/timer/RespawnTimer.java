@@ -28,8 +28,10 @@ public class RespawnTimer extends BukkitRunnable {
 			player.removeMetadata("combat", plugin);
 			kits.getKits().remove(player.getUniqueId());
 			kits.getKits().put(player.getUniqueId(), "");
+			return;
 		} else {
 			this.cancel();
 		}
+		this.cancel();
 	}
 }
