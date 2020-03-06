@@ -2,6 +2,7 @@ package mb.mizinkobusters.kitpvp.listener;
 
 import java.util.HashMap;
 import java.util.UUID;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -99,24 +100,26 @@ public class PlayerRespawnListener implements Listener {
 				player.setMetadata("respawn", new FixedMetadataValue(plugin, player));
 				player.sendMessage(prefix + "§a8秒後§eにリスポーンします");
 				player.sendMessage(prefix + "§cその場から動かないでください...");
-				ct.put(player.getUniqueId(), 0);
 
 				new BukkitRunnable() {
 					@Override
 					public void run() {
 						if (player.hasMetadata("respawn")) {
 							int i = ct.getOrDefault(player.getUniqueId(), 0);
-							for (i = 0; i <= 8; i++) {
-								if (i == 8) {
-									player.teleport(
-											new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0));
-									player.sendMessage(prefix + "§aリスポーンしました!");
-									player.removeMetadata("respawn", plugin);
-									player.removeMetadata("combat", plugin);
-									kits.getKits().remove(player.getUniqueId());
-									kits.getKits().put(player.getUniqueId(), "");
-									ct.put(player.getUniqueId(), 0);
-								}
+							if (i <= 7) {
+								ct.put(player.getUniqueId(),
+										ct.getOrDefault(player.getUniqueId(), 0) + 1);
+								Bukkit.getLogger().info(i + "");
+							} else {
+								player.teleport(new Location(Bukkit.getWorld("kitpvp"), 0.5, 7.0,
+										0.5, 0, 0));
+								player.sendMessage(prefix + "§aリスポーンしました!");
+								player.removeMetadata("respawn", plugin);
+								player.removeMetadata("combat", plugin);
+								kits.getKits().remove(player.getUniqueId());
+								kits.getKits().put(player.getUniqueId(), "");
+								ct.put(player.getUniqueId(), 0);
+								this.cancel();
 							}
 						} else {
 							this.cancel();
@@ -133,22 +136,25 @@ public class PlayerRespawnListener implements Listener {
 		Location from = event.getFrom();
 		Location to = event.getTo();
 
-		// X, Y, Z座標のいずれかで移動が確認されたらリスポーンをキャンセル
-		if (player.hasMetadata("respawn")) {
-			if (player.getWorld().getName().equals("kitpvp")
-					&& Math.abs(from.distanceSquared(to)) >= 0.01) {
-				player.removeMetadata("respawn", plugin);
-				player.removeMetadata("combat", plugin);
-				player.sendMessage(prefix + "§c移動したためリスポーンを中断しました");
-				bone(player);
-			}
-		} else if (player.hasMetadata("fastrespawn")) {
-			if (player.getWorld().getName().equals("kitpvp")
-					&& Math.abs(from.distanceSquared(to)) >= 0.01) {
-				player.removeMetadata("respawn", plugin);
-				player.removeMetadata("combat", plugin);
-				player.sendMessage(prefix + "§c移動したためリスポーンを中断しました");
-				bone(player);
+		if (player.getWorld().getName().equals("kitpvp")) {
+			if (player.hasMetadata("respawn")) {
+				// X, Y, Z座標のいずれかで移動が確認されたらリスポーンをキャンセル
+				if (Math.abs(from.getBlockX() - to.getBlockX()) >= 1
+						|| Math.abs(from.getBlockY() - to.getBlockY()) >= 1
+						|| Math.abs(from.getBlockZ() - to.getBlockZ()) >= 1) {
+					player.removeMetadata("respawn", plugin);
+					player.sendMessage(prefix + "§c移動したためリスポーンを中断しました");
+					ct.put(player.getUniqueId(), 0);
+					bone(player);
+				}
+			} else if (player.hasMetadata("fastrespawn")) {
+				if (Math.abs(from.getBlockX() - to.getBlockX()) >= 1
+						|| Math.abs(from.getBlockY() - to.getBlockY()) >= 1
+						|| Math.abs(from.getBlockZ() - to.getBlockZ()) >= 1) {
+					player.removeMetadata("fastrespawn", plugin);
+					player.sendMessage(prefix + "§c移動したためリスポーンを中断しました");
+					bone(player);
+				}
 			}
 		}
 	}
