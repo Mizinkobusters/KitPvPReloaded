@@ -9,6 +9,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -34,21 +35,21 @@ public class PlayerFallOrTeleportToFieldListener implements Listener {
 		this.kits = kits;
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onDamage(EntityDamageEvent event) {
 		Player player = (Player) event.getEntity();
-		DamageCause cause = event.getCause();
 		Material material = player.getLocation().getBlock().getRelative(BlockFace.DOWN).getType();
 
-		if (cause.equals(DamageCause.FALL) && material.equals(Material.SPONGE)) {
-			if (kits.getKits().getOrDefault(player.getUniqueId(), "").length() > 1) {
-				event.setCancelled(true);
+		if (event.getCause().equals(DamageCause.FALL) && material.equals(Material.SPONGE)) {
+			if (kits.getKits().getOrDefault(player.getUniqueId(), "").length() > 1
+					&& !player.hasMetadata("combat")) {
 				player.addPotionEffect(
 						new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 60, 3, false, false));
 				player.setMetadata("combat", new FixedMetadataValue(plugin, player));
+				event.setCancelled(true);
 			} else {
 				event.setCancelled(true);
-				player.teleport(new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0));
+				player.teleport(new Location(player.getWorld(), 0.5, 13.0, 0.5, 0, 0));
 				player.sendMessage(prefix + "§cKitを選択してください");
 			}
 		}

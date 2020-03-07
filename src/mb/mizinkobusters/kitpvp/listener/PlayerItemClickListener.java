@@ -33,12 +33,12 @@ public class PlayerItemClickListener implements Listener {
 			if (player.getGameMode().equals(GameMode.SPECTATOR)) {
 				if (action.equals(Action.LEFT_CLICK_AIR)
 						|| action.equals(Action.LEFT_CLICK_BLOCK)) {
-					player.teleport(new Location(Bukkit.getWorld("kitpvp"), 0.5, 7.0, 0.5, 0, 0));
+					player.teleport(new Location(Bukkit.getWorld("kitpvp"), 0.5, 13.0, 0.5, 0, 0));
 					player.setGameMode(GameMode.ADVENTURE);
 					player.sendMessage(prefix + "§e観戦モードを解除しました");
 				}
 			} else {
-				player.teleport(new Location(Bukkit.getWorld("kitpvp"), 0.5, 7.0, 0.5, 0, 0));
+				player.teleport(new Location(Bukkit.getWorld("kitpvp"), 0.5, 13.0, 0.5, 0, 0));
 				player.setGameMode(GameMode.SPECTATOR);
 				player.sendMessage(prefix + "§a観戦モードになりました");
 				player.sendMessage(prefix + "§a左クリック§7で解除できます");

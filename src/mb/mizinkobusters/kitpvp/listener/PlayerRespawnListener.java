@@ -84,7 +84,7 @@ public class PlayerRespawnListener implements Listener {
 					@Override
 					public void run() {
 						if (player.hasMetadata("fastrespawn")) {
-							player.teleport(new Location(player.getWorld(), 0.5, 7.0, 0.5, 0, 0));
+							player.teleport(new Location(player.getWorld(), 0.5, 13.0, 0.5, 0, 0));
 							player.sendMessage(prefix + "§aリスポーンしました!");
 							player.removeMetadata("fastrespawn", plugin);
 							player.removeMetadata("combat", plugin);
@@ -109,9 +109,8 @@ public class PlayerRespawnListener implements Listener {
 							if (i <= 7) {
 								ct.put(player.getUniqueId(),
 										ct.getOrDefault(player.getUniqueId(), 0) + 1);
-								Bukkit.getLogger().info(i + "");
 							} else {
-								player.teleport(new Location(Bukkit.getWorld("kitpvp"), 0.5, 7.0,
+								player.teleport(new Location(Bukkit.getWorld("kitpvp"), 0.5, 13.0,
 										0.5, 0, 0));
 								player.sendMessage(prefix + "§aリスポーンしました!");
 								player.removeMetadata("respawn", plugin);
@@ -145,7 +144,13 @@ public class PlayerRespawnListener implements Listener {
 					player.removeMetadata("respawn", plugin);
 					player.sendMessage(prefix + "§c移動したためリスポーンを中断しました");
 					ct.put(player.getUniqueId(), 0);
-					bone(player);
+
+					new BukkitRunnable() {
+						@Override
+						public void run() {
+							bone(player);
+						}
+					}.runTaskLater(plugin, 20);
 				}
 			} else if (player.hasMetadata("fastrespawn")) {
 				if (Math.abs(from.getBlockX() - to.getBlockX()) >= 1
@@ -153,7 +158,13 @@ public class PlayerRespawnListener implements Listener {
 						|| Math.abs(from.getBlockZ() - to.getBlockZ()) >= 1) {
 					player.removeMetadata("fastrespawn", plugin);
 					player.sendMessage(prefix + "§c移動したためリスポーンを中断しました");
-					bone(player);
+
+					new BukkitRunnable() {
+						@Override
+						public void run() {
+							bone(player);
+						}
+					}.runTaskLater(plugin, 20);
 				}
 			}
 		}
@@ -167,7 +178,13 @@ public class PlayerRespawnListener implements Listener {
 			damagee.removeMetadata("respawn", plugin);
 			damagee.removeMetadata("fastrespawn", plugin);
 			damagee.sendMessage(prefix + "§cダメージを受けたためリスポーンを中断しました");
-			bone(damagee);
+
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					bone(damagee);
+				}
+			}.runTaskLater(plugin, 20);
 		}
 	}
 
@@ -184,7 +201,13 @@ public class PlayerRespawnListener implements Listener {
 			player.removeMetadata("respawn", plugin);
 			player.removeMetadata("fastrespawn", plugin);
 			player.sendMessage(prefix + "§cテレポートしたためリスポーンを中断しました");
-			bone(player);
+
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					bone(player);
+				}
+			}.runTaskLater(plugin, 20);
 		}
 	}
 
