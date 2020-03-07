@@ -75,10 +75,10 @@ public class KitPvP extends JavaPlugin implements Listener {
 		List<String> author = getDescription().getAuthors();
 		String prefix = "[" + plname + "] ";
 
-		System.out.println(prefix + "");
-		System.out.println(prefix + plname + "(v." + ver + ") - by" + author);
-		System.out.println(prefix + "This plug-in has started up.");
-		System.out.println(prefix + "Hello players :)");
+		Bukkit.getLogger().info(prefix + "");
+		Bukkit.getLogger().info(prefix + plname + "(v." + ver + ") - by" + author);
+		Bukkit.getLogger().info(prefix + "This plug-in has started up.");
+		Bukkit.getLogger().info(prefix + "Hello players :)");
 
 
 		SelectGUI select = new SelectGUI(this);
@@ -215,12 +215,12 @@ public class KitPvP extends JavaPlugin implements Listener {
 	}
 
 	public void onReload() {
-		System.out.println("This plug-in is reloaded now...");
+		Bukkit.getLogger().info("This plug-in is reloaded now...");
 	}
 
 	public void onDisable() {
-		System.out.println("This plug-in has shut down...");
-		System.out.println("See you next time. ;)");
+		Bukkit.getLogger().info("This plug-in has shut down...");
+		Bukkit.getLogger().info("See you next time. ;)");
 	}
 
 	public Team createKitPvPTeam(String teamName) {

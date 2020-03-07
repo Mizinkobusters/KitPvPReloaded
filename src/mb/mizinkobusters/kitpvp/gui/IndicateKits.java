@@ -1618,7 +1618,6 @@ public class IndicateKits implements Listener {
 		Inventory gui = Bukkit.createInventory(null, 27, "§b§lTank Kit§7(一般Kit)");
 
 		ItemStack sword = new ItemStack(Material.WOOD_SWORD);
-		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
 
 		ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE, 2);
 
@@ -1631,12 +1630,12 @@ public class IndicateKits implements Listener {
 
 		meta = sword.getItemMeta();
 		meta.setDisplayName("§7武器");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7木の剣[ダメージ増加I]")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7木の剣")));
 		sword.setItemMeta(meta);
 
 		meta = gapple.getItemMeta();
 		meta.setDisplayName("§7補助");
-		meta.setLore(new ArrayList<String>(Arrays.asList("§7金のリンゴ×2")));
+		meta.setLore(new ArrayList<String>(Arrays.asList("§7金のリンゴ×1")));
 		gapple.setItemMeta(meta);
 
 		meta = ability1.getItemMeta();

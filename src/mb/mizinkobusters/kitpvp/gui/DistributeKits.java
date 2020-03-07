@@ -420,10 +420,9 @@ public class DistributeKits implements Listener {
 		PlayerInventory inv = player.getInventory();
 
 		ItemStack sword = new ItemStack(Material.WOOD_SWORD);
-		sword.addEnchantment(Enchantment.DAMAGE_ALL, 1);
 
 		inv.addItem(sword);
-		inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 2));
+		inv.addItem(new ItemStack(Material.GOLDEN_APPLE, 1));
 		bone(player);
 
 		inv.setHelmet(new ItemStack(Material.DIAMOND_HELMET));
