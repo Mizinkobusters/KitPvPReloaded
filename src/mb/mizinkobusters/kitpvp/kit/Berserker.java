@@ -38,11 +38,10 @@ public class Berserker implements Listener {
 		if (killer != null
 				&& kits.getKits().getOrDefault(killer.getUniqueId(), "").equals("Berserker")) {
 			killer.getInventory().addItem(new ItemStack(Material.GOLDEN_APPLE));
+			killer.removePotionEffect(PotionEffectType.WEAKNESS);
+			killer.addPotionEffect(
+					new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 140, 0, false, false));
 		}
-
-		killer.removePotionEffect(PotionEffectType.WEAKNESS);
-		killer.addPotionEffect(
-				new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 0, 140, false, false));
 	}
 
 	@EventHandler

@@ -6,6 +6,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -58,6 +60,17 @@ public class Astronaut implements Listener {
 
 		if (kits.getKits().getOrDefault(damager.getUniqueId(), "").equals("Astronaut")) {
 			return;
+		}
+	}
+
+	@EventHandler
+	public void onDamageFall(EntityDamageEvent event) {
+		Player damagee = (Player) event.getEntity();
+		DamageCause cause = event.getCause();
+
+		if (kits.getKits().getOrDefault(damagee.getUniqueId(), "").equals("Astronaut")
+				&& cause.equals(DamageCause.FALL)) {
+			event.setCancelled(true);
 		}
 	}
 }
